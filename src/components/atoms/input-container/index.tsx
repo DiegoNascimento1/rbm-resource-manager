@@ -25,7 +25,7 @@ export default function InputContainer(props: InputContainerProps) {
   return (
     <StyledInputContainer>
       <StyledLabel>{props.labelName}</StyledLabel>
-      <Input children={displayContent} />
+      <Input display={displayContent} />
       {props.eyeButton && (
         <StyledEyeButton background={eyeImg} onClick={() => handleEyeClick()} />
       )}

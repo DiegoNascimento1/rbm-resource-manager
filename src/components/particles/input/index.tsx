@@ -1,12 +1,9 @@
-import {StyledInput} from "./index-style";
+import { StyledInput } from "./index-style";
 
-export interface InputPropsInterface
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+type InputProps = {
+  display?: boolean;
+};
 
-  export default function Input({
-    children,
-  }: InputPropsInterface) {
-    return (
-        <StyledInput type={children?"text":"password"}/>
-    )
-  }
+export default function Input({ display }: InputProps) {
+  return <StyledInput type={display ? "password" : "text"} />;
+}
