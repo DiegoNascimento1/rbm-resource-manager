@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {THEME} from "contants";
 
 export const StyledInput = styled.input`
   height: 54px;
@@ -13,5 +14,16 @@ export const StyledInput = styled.input`
     background: #FFFFFF;
     border: 1px solid #0092D4;
   }
+`;
 
+export const StyledEyeButton = styled.button<{ background: string }>`
+  position:absolute;  
+  left:370px;
+  top:40px;
+  height: 20px;
+  width: 20px;
+  color: ${THEME.light.colors.secondary3};
+  border:none;
+  background: ${({ background }) => background};
+  cursor:pointer;
 `;

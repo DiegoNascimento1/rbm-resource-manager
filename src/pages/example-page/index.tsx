@@ -4,7 +4,7 @@ import React from "react";
 
 export default function ExamplePage() {
   return (
-    <InputContainer labelName="Senha" eyeButton={true}/>
+    <InputContainer labelName="Senha" password={true}/>
   )
 
 }
