@@ -7,7 +7,7 @@ import LogoParticles from "components/particles/logo-particles/logo-index";
 export default function HeaderAtom() {
   return (
     <Styled.Header>
-     <LogoParticles />
+     <LogoParticles width="122px" height="36px"/>
     </Styled.Header>
   );
 }
