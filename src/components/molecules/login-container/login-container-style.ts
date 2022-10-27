@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const LoginContainer = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
   background-color: white;
-  max-height:661px;
-  max-width:475px;
-  padding:42px;
+  max-height: 661px;
+  max-width: 475px;
+  padding: 42px 32px 42px 32px;
   align-items: center;
 
   p:nth-child(2) {
@@ -16,6 +16,6 @@ export const LoginContainer = styled.div`
     margin:5px 0px 32px 0px;
    }
   p:nth-child(7) {
-  margin:32px 0px 32px 0px;
+    margin:32px 0px 32px 0px;
   }
 `;
