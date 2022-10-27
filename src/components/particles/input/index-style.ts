@@ -22,7 +22,7 @@ export const StyledInput = styled.input`
 export const StyledEyeButton = styled.button<{ background: string }>`
   position:relative;  
   left:370px;
-  top:-68px;
+  top:-40px;
   height: 20px;
   width: 20px;
   color: ${THEME.light.colors.secondary3};

@@ -27,7 +27,7 @@ export default function Input({ password }: InputProps) {
 
   return (
     <>
-      <StyledInput type={displayContent ? "text" : "password"} />;
+      <StyledInput type={displayContent ? "text" : "password"} />
       {password && (
         <StyledEyeButton background={eyeImg} onClick={() => handleEyeClick()} />
       )}
