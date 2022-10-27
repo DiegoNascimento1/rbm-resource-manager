@@ -1,3 +1,4 @@
+import Spacing from "components/particles/spacing-particles";
 import Typography from "components/particles/typography-particles";
 import ListParticleColumn from "components/particles/ul-list-column-particle/list-index";
 import ListParticleRow from "components/particles/ul-list-row-particle/list-index";
@@ -9,18 +10,18 @@ export default function InformationContainer() {
 
 	return (
 		<Styled.Container>
-			<Styled.Spacing marginTop="-55px" />
+			<Spacing marginTop="-55px" />
 			<Typography tag={"h1"} color={theme.colors.primary2} size="62.18px">
 				Lorem ipsum
 			</Typography>
-			<Styled.Spacing marginTop="-55px" />
+			<Spacing marginTop="-55px" />
 			<Typography tag={"h2"} size="31.09px" fontWeight="400">
 				Lorem ipsun 🚀
 			</Typography>
 			<Styled.ContainerListRow>
 				<ListParticleColumn />
 			</Styled.ContainerListRow>
-			<Styled.Spacing marginTop="45px" />
+			<Spacing marginTop="45px" />
 			<Typography tag={"p"} size="18.65px" fontWeight="400">
 				Lorem Ipsum is simply dummy text of the printing {"\n"} and typesetting
 				industry. Lorem Ipsum has been the {"\n"} industry's standard dummy text
@@ -28,7 +29,7 @@ export default function InformationContainer() {
 				type and {"\n"}
 				scrambled it to make a type specimen book.
 			</Typography>
-			<Styled.Spacing marginTop="45px" />
+			<Spacing marginTop="45px" />
 			<Typography tag={"p"} size="18.65px" fontWeight="400">
 				Equipe
 			</Typography>
