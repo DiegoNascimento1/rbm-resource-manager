@@ -9,7 +9,8 @@ export const LoginContainer = styled.div`
   padding: 42px 32px 42px 32px;
   align-items: center;
 
-  p:nth-child(2) {
+
+  /* p:nth-child(2) {
     margin:54px 0px 5px 0px;
    }
   p:nth-child(3) {
@@ -17,5 +18,5 @@ export const LoginContainer = styled.div`
    }
   p:nth-child(7) {
     margin:32px 0px 32px 0px;
-  }
+  } */
 `;
