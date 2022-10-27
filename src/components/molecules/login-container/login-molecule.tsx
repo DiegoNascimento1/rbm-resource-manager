@@ -1,3 +1,4 @@
+import CheckedAtom from "components/atoms/checked-atom/checked-atom-index";
 import InputContainer from "components/atoms/input-container";
 import ButtonParticle from "components/particles/button-primary/button-primaty-index";
 import LogoParticles from "components/particles/logo-particles/logo-index";
@@ -12,6 +13,7 @@ export default function LoginMolecule() {
       <Typography tag={'p'} fontWeight={"400"}>Acesse sua conta abaixo =)</Typography>
       <InputContainer placeholder={"Digite seu e-mail"} labelName={"E-mail"} password={false}/>
       <InputContainer placeholder={"Digite sua senha"} labelName={"Senha"} password={true}/>
+      <CheckedAtom textoLabel={"Salvar login"} textoLink={"Esqueci a senha"}/>
       <ButtonParticle text={"ENTRAR"}/>
     </Styled.LoginContainer>
   );
