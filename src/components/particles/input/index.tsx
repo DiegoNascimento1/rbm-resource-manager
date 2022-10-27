@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 
 type InputProps = {
   password?: boolean;
+  placeholder?: string;
 };
 
-export default function Input({ password }: InputProps) {
+export default function Input({ password,placeholder }: InputProps) {
   const [displayContent, setDisplayContent] = useState<boolean>(
     password ? false : true
   );
@@ -27,7 +28,7 @@ export default function Input({ password }: InputProps) {
 
   return (
     <>
-      <StyledInput type={displayContent ? "text" : "password"} />
+      <StyledInput placeholder={placeholder} type={displayContent ? "text" : "password"} />
       {password && (
         <StyledEyeButton background={eyeImg} onClick={() => handleEyeClick()} />
       )}
