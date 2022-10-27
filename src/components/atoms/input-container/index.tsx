@@ -3,7 +3,6 @@ import Input from "components/particles/input";
 import { useState } from "react";
 
 type InputContainerProps = {
-  eyeButton?: boolean;
   labelName?: string;
   password?: boolean;
 };

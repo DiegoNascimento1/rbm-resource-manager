@@ -5,6 +5,9 @@ export const StyledInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width: 410px;
+  /* border: 1px solid red; */
+  margin:20px 20px 0px 20px;
 `;
 
 export const StyledLabel = styled.label`

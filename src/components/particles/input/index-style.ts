@@ -8,6 +8,9 @@ export const StyledInput = styled.input`
   padding: 18px 16px 19px 16px;
   border: 1px solid #DCDDE3;
   box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 400;
+  /* line-height: 17px; */
 
   &:focus{
     outline: none;
@@ -17,9 +20,9 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledEyeButton = styled.button<{ background: string }>`
-  position:absolute;  
+  position:relative;  
   left:370px;
-  top:40px;
+  top:-40px;
   height: 20px;
   width: 20px;
   color: ${THEME.light.colors.secondary3};
