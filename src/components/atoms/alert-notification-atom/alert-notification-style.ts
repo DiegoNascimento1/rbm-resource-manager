@@ -6,6 +6,7 @@ type AlertDivProps = {
   sucess ?: boolean;
   info ?: boolean;
   bell ?: boolean;
+  display ?: string;
 }
 
 const StyledAlert = css`
@@ -34,11 +35,11 @@ const StyledSucess = css`
   }
 `
 const StyledInfo = css`
-  color:#D0D0D0;
+  color:#252B42;
   background-color: #F3F3F3;
   button {
-    color:#D0D0D0;
-    border-color: #D0D0D0;
+    color:#6B6B6B;;
+    border-color: #6B6B6B;;
   }
 `
 const StyledBell = css`
@@ -52,15 +53,40 @@ const StyledBell = css`
 
 
 export const StyledAlertDiv = styled.div<AlertDivProps>`
-  display: flex;
+  display: ${(props)=> props.display};
+  flex-direction: row;
+  justify-content: baseline;
   height: 58px;
   width: 410px;
   border: 1px solid ${(props) => props.color};
   align-items: center;
-  padding: 0px 23px 0px 0px;
+  padding: 0px 23px 0px 23px;
   ${({alert})   => alert && StyledAlert}; 
   ${({danger})  => danger && StyledDanger};
   ${({sucess})  => sucess && StyledSucess}; 
   ${({info})    => info && StyledInfo}; 
-  ${({bell})    => bell && StyledBell}; 
+  ${({bell})    => bell && StyledBell};
+  animation: fade-top 1s linear;
+
+  @keyframes fade-top {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+  }
+
+  p{
+    position: fixed;
+    left: 60px
+  }
+
+  button{
+      position: fixed;
+      left: 371px;
+    }
 `;
