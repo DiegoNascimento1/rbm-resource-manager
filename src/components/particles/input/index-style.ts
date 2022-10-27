@@ -19,14 +19,18 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const StyledEyeButton = styled.button<{ background: string }>`
+export const StyledEyeButton = styled.span`
   position:relative;  
   left:370px;
   top:-40px;
   height: 20px;
   width: 20px;
   color: ${THEME.light.colors.secondary3};
-  border:none;
-  background: ${({ background }) => background};
   cursor:pointer;
+  svg:nth-child(1) {
+    font-size: 18px;
+    color:red;
+
+  }
+
 `;
