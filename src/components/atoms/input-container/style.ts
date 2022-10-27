@@ -6,6 +6,7 @@ export const StyledInputContainer = styled.div`
   flex-direction: column;
   gap: 4px;
   width: 410px;
+  margin:9px 0px 9px 0px;
 `;
 
 export const StyledLabel = styled.label`
