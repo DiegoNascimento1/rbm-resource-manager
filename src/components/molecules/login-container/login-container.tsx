@@ -4,17 +4,23 @@ import LogoParticles from "components/particles/logo-particles/logo-index";
 import Typography from "components/particles/typography-particles";
 import * as Styled from "./login-container-style";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
+import Spacing from "../../particles/spacing-particles/index";
 
 export default function LoginContainer() {
   return (
     <Styled.LoginContainer>
       <LogoSvg/>
-      <Typography tag={'p'} size={'20px'} fontWeight={"700"}>Entrar na minha conta</Typography>
-      <Typography tag={'p'} size={'14px'} fontWeight={"400"}>Acesse sua conta abaixo =)</Typography>
+      <Spacing marginTop={"54px"}/>
+      <Typography tag={'p'} size={'20px'} margin={"0px"} fontWeight={"700"}>Entrar na minha conta</Typography>
+      <Spacing marginTop={"10px"}/>
+      <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Acesse sua conta abaixo =)</Typography>
+      <Spacing marginTop={"32px"}/>
       <InputContainer placeholder={"Digite seu e-mail"} labelName={"E-mail"} password={false}/>
       <InputContainer placeholder={"Digite sua senha"} labelName={"Senha"} password={true}/>
       <ButtonParticle text={"ENTRAR"}/>
-      <Typography tag={'p'} size={'14px'} decoration={'underline'} fontWeight={"400"}>Primeiro acesso? <a href="#" style={{fontWeight:"600",color:"black"}}>Ative sua conta.</a></Typography>
+      <Spacing marginTop={"32px"}/>
+      <Typography tag={'p'} size={'14px'} margin={"0px"} decoration={'underline'} fontWeight={"400"}>Primeiro acesso? <a href="#" style={{fontWeight:"600",color:"black"}}>Ative sua conta.</a></Typography>
+      <Spacing marginTop={"32px"}/>
     </Styled.LoginContainer>
   );
 }
