@@ -10,8 +10,8 @@ export default function LoginMolecule() {
       <LogoParticles width={"122px"} height={"35.28px"}/>
       <Typography tag={'p'} fontWeight={"700"}>Entrar na minha conta</Typography>
       <Typography tag={'p'} fontWeight={"400"}>Acesse sua conta abaixo =)</Typography>
-      <InputContainer placeholder={"Digite seu Email"} labelName={"E-mail"} password={false}/>
-      <InputContainer placeholder={"Digite sua Senha"} labelName={"Senha"} password={true}/>
+      <InputContainer placeholder={"Digite seu e-mail"} labelName={"E-mail"} password={false}/>
+      <InputContainer placeholder={"Digite sua senha"} labelName={"Senha"} password={true}/>
       <ButtonParticle text={"ENTRAR"}/>
     </Styled.LoginContainer>
   );
