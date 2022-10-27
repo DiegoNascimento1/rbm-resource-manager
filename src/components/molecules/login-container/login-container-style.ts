@@ -4,9 +4,9 @@ export const LoginContainer = styled.div`
   display:flex;
   flex-direction: column;
   background-color: white;
-  height:661px;
-  width:475px;
-  padding:33px;
+  max-height:661px;
+  max-width:475px;
+  padding:42px;
   align-items: center;
 
   p:nth-child(2) {
@@ -15,4 +15,7 @@ export const LoginContainer = styled.div`
   p:nth-child(3) {
     margin:5px 0px 32px 0px;
    }
+  p:nth-child(7) {
+  margin:32px 0px 32px 0px;
+  }
 `;
