@@ -8,6 +8,6 @@ type TextProps = {
 
 export const Text = styled.span<TextProps>`
 	color: ${(props) => props.color};
-	size: ${(props) => props.size};
+	font-size: ${(props) => props.size};
 	font-weight: ${(props) => props.fontWeight};
 `;
