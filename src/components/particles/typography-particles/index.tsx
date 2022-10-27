@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { useTheme } from "styled-components";
-import * as Styled from "./typography.style";
+import * as Styled from "./typography-style";
 
 type TypographyTypes = {
 	size?: string;
