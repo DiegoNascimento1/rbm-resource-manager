@@ -6,8 +6,6 @@ export const StyledInputContainer = styled.div`
   flex-direction: column;
   gap: 4px;
   width: 410px;
-  /* border: 1px solid red; */
-  margin:20px 20px 0px 20px;
 `;
 
 export const StyledLabel = styled.label`
@@ -20,16 +18,5 @@ export const StyledLabel = styled.label`
 `;
 
 //color: ${({theme})=>theme.colors.secondary3};
-
-export const StyledEyeButton = styled.button<{ background: string }>`
-  position:absolute;  
-  left:370px;
-  top:40px;
-  height: 20px;
-  width: 20px;
-  color: ${THEME.light.colors.secondary3};
-  border:none;
-  background: ${({ background }) => background};
-`;
 
 

@@ -1,4 +1,4 @@
-import { StyledLabel, StyledInputContainer, StyledEyeButton } from "./style";
+import { StyledLabel, StyledInputContainer} from "./style";
 import Input from "components/particles/input";
 import { useState } from "react";
 

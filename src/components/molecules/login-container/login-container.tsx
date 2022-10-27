@@ -3,11 +3,12 @@ import ButtonParticle from "components/particles/button-primary/button-primaty-i
 import LogoParticles from "components/particles/logo-particles/logo-index";
 import Typography from "components/particles/typography-particles";
 import * as Styled from "./login-container-style";
+import LogoSvg from "components/particles/logo-svg/logo-svg";
 
 export default function LoginContainer() {
   return (
     <Styled.LoginContainer>
-      <LogoParticles width={"122px"} height={"35.28px"}/>
+      <LogoSvg/>
       <Typography tag={'p'} size={'20px'} fontWeight={"700"}>Entrar na minha conta</Typography>
       <Typography tag={'p'} size={'14px'} fontWeight={"400"}>Acesse sua conta abaixo =)</Typography>
       <InputContainer placeholder={"Digite seu e-mail"} labelName={"E-mail"} password={false}/>
