@@ -8,6 +8,7 @@ type TypographyTypes = {
 	color?: string;
 	tag: "h1" | "h2" | "p";
 	children: ReactNode;
+	decoration?: "underline" | "line-through" | "none";
 };
 
 export default function Typography(props: TypographyTypes) {
@@ -17,6 +18,7 @@ export default function Typography(props: TypographyTypes) {
 			color={props.color}
 			size={props.size}
 			fontWeight={props.fontWeight}
+			decoration={props.decoration}
 		>
 			{props.children}
 		</Styled.Text>
