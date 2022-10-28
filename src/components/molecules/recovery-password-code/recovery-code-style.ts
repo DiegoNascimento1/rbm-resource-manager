@@ -5,7 +5,7 @@ export const RecoveryCodeDiv = styled.div`
   flex-direction: column;
   background-color: white;
   height: 661px;
-  width: 410px;
-  padding: 42px 32px 42px 32px;
+  min-width: 475px;
+  padding: 42px 0px 42px 0px;
   align-items: center;
 `;
