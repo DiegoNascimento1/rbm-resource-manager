@@ -1,5 +1,5 @@
 import LogoSvg from "components/particles/logo-svg/logo-svg";
-import sucessSvg from "../../../assets/svgs/sucess.svg";
+import sucessSvg from "../../../assets/svgs/sucess-recovery.svg";
 import React from "react";
 import { RecoverySucessDiv } from "./recovery-sucess-style";
 import Spacing from "components/particles/spacing-particles";
