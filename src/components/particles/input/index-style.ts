@@ -10,7 +10,6 @@ export const StyledInput = styled.input`
   box-sizing: border-box;
   font-size: 14px;
   font-weight: 400;
-  /* line-height: 17px; */
 
   &:focus{
     outline: none;
@@ -25,12 +24,12 @@ export const StyledEyeButton = styled.span`
   top:-40px;
   height: 20px;
   width: 20px;
-  color: ${THEME.light.colors.secondary3};
   cursor:pointer;
-  svg:nth-child(1) {
+
+  & > svg {
     font-size: 18px;
-    color:red;
-
+    & > path{
+      fill:#B1B2B3;
+    }
   }
-
 `;
