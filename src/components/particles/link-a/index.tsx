@@ -1,4 +1,4 @@
-import { StyledAChecked } from "./style";
+import { StyledLinkA } from "./style";
 
 type propsLinkA = {
   texto:string;
@@ -9,9 +9,9 @@ export default function LinkA(props: propsLinkA) {
 
     return (
       <>
-        <StyledAChecked href={props.href}>
+        <StyledLinkA href={props.href}>
             {props.texto}
-        </StyledAChecked >
+        </StyledLinkA >
       </>
     );
   };

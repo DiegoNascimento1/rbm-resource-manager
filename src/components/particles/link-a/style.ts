@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import {THEME} from "contants";
 
-type propsStyledAChecked = {
+type propsStyledLinkA = {
   href:string;
 }
 
-export const StyledAChecked = styled.a.attrs((props: propsStyledAChecked) => ({
+export const StyledLinkA = styled.a.attrs((props: propsStyledLinkA) => ({
     href: props.href,
     target:"_blank"
   }))`
