@@ -5,7 +5,7 @@ import Typography from "components/particles/typography-particles";
 import * as Styled from "./login-container-style";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "../../particles/spacing-particles/index";
-import LoginChecked from "../login-checked-link";
+import LoginChecked from "components/atoms/login-checked-link";
 
 export default function LoginContainer() {
   return (
