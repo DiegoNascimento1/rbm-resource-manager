@@ -14,7 +14,12 @@ export default function MateusTestPage() {
 
   return (
     <>
-      <Input value={input} setInput={setInput}/>
+      <AlertAtom sucess text="Test text from API"/>
+      <AlertAtom danger text="Test text from API"/>
+      <AlertAtom bell text="Test text from API"/>
+      <AlertAtom alert text="Test text from API"/>
+      <AlertAtom info text="Test text from API"/>
+
     </>
   )
 

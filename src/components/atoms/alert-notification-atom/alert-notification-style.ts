@@ -55,9 +55,9 @@ const StyledBell = css`
 export const StyledAlertDiv = styled.div<AlertDivProps>`
   display: ${(props)=> props.display};
   flex-direction: row;
-  justify-content: baseline;
   height: 58px;
   width: 410px;
+  margin-left: 100px;
   border: 1px solid ${(props) => props.color};
   align-items: center;
   padding: 0px 23px 0px 23px;
@@ -81,12 +81,11 @@ export const StyledAlertDiv = styled.div<AlertDivProps>`
   }
 
   p{
-    position: fixed;
-    left: 60px
+    position: relative;
+    margin-left: 15px;
   }
-
   button{
-      position: fixed;
-      left: 371px;
-    }
+    position: relative;
+    left: 200px;
+  }
 `;

@@ -55,7 +55,6 @@ export default function AlertAtom(props: ListAlertProps) {
             display={sttDisplay}>
                 <img src={srcSGV(props)} alt="Nop"/>
                 <Typography tag="p">{props.text}</Typography>
-                
                 <ButtonCloseAlert
                 alert={props.alert} 
                 danger={props.danger} 
