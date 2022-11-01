@@ -1,39 +1,26 @@
 import { StyledInput, StyledEyeButton } from "./index-style";
-import { useEffect, useState } from "react";
+import { ReactFragment, useEffect, useState } from "react";
 
 type InputProps = {
-  password?: boolean;
-  placeholder?: string;
+  password ?: boolean;
+  placeholder ?: string;
+  value ?: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function Input({ password,placeholder }: InputProps) {
+export default function Input({ password, placeholder, value, setInput }: InputProps) {
   const [displayContent, setDisplayContent] = useState<boolean>(
     password ? false : true
   );
 
-  //Não utilizado mais, lógica simplificada para alternar entre svgs --------
-
-  // const [eyeImg, setEyeImg] = useState(
-  //   ""
-  // );
-
-  // useEffect(() => {
-  //   setEyeImg(
-  //     displayContent
-  //       ? "url('https://api.iconify.design/fa-regular/eye.svg?color=%23b1b2b3') no-repeat center center / contain;"
-  //       : "url('https://api.iconify.design/fa-regular/eye-slash.svg?color=%23b1b2b3') no-repeat center center / contain;"
-  //   );
-  // }, [displayContent]);
-
-  // function handleEyeClick() {
-  //   setDisplayContent(!displayContent);
-  // }
-  //--------------------------------------------------------------------
-
+  function onChangeInput(input : string){
+    console.log(input);
+    setInput(input);
+  }
 
   return (
     <>
-      <StyledInput placeholder={placeholder} type={displayContent ? "text" : "password"} />
+      <StyledInput onChange={(e)=>{onChangeInput(e.target.value)}} placeholder={placeholder} type={displayContent ? "text" : "password"} value={value}/>
       {password && (
         <StyledEyeButton onClick={() => setDisplayContent(!displayContent)}>{displayContent
           ? <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 576 512"><path fill="#b1b2b3" d="M288 144a110.94 110.94 0 0 0-31.24 5a55.4 55.4 0 0 1 7.24 27a56 56 0 0 1-56 56a55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>

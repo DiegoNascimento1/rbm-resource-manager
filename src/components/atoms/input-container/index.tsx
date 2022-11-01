@@ -1,18 +1,22 @@
 import { StyledLabel, StyledInputContainer} from "./style";
-import Input from "components/particles/input";
+import Input from "components/particles/input-field";
 import { useState } from "react";
 
 type InputContainerProps = {
   labelName?: string;
   password?: boolean;
   placeholder?: string;
+  value ?: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function InputContainer(props: InputContainerProps) {
   return (
     <StyledInputContainer>
       <StyledLabel>{props.labelName}</StyledLabel>
-      <Input placeholder={props.placeholder} password={props.password} />
+      <Input value={props.value} setInput={props.setInput} placeholder={props.placeholder} password={props.password}/>
     </StyledInputContainer>
   );
 }
+
+//<Input   />

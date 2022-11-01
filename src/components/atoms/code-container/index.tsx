@@ -1,5 +1,5 @@
 import { StyledInputContainer} from "./style";
-import Input from "components/particles/input";
+import Input from "components/particles/input-field";
 import { useState } from "react";
 import CodeInput from "components/particles/input-code/input-code-index";
 import Typography from "components/particles/typography-particles";
