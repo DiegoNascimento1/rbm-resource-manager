@@ -37,6 +37,8 @@ export const StyledButtonAlert = styled.button<ButtonProps>`
     border-style: solid;
     align-items: center;
     justify-content: center;
+    padding-top: 0px;
+    text-align: center;
     cursor: pointer;
     ${({alert})   => alert && StyledAlert}; 
     ${({danger})  => danger && StyledDanger};

@@ -85,7 +85,7 @@ export const StyledAlertDiv = styled.div<AlertDivProps>`
     margin-left: 15px;
   }
   button{
-    position: static;
-    left: 15px;
+    position: relative;
+    left: 200px;
   }
 `;
