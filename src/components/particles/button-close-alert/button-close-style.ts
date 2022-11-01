@@ -40,10 +40,10 @@ export const StyledButtonAlert = styled.button<ButtonProps>`
     padding-top: 0px;
     text-align: center;
     cursor: pointer;
-    ${({alert})   => alert && StyledAlert}; 
-    ${({danger})  => danger && StyledDanger};
-    ${({sucess})  => sucess && StyledSucess}; 
-    ${({info})    => info && StyledInfo}; 
-    ${({bell})    => bell && StyledBell}; 
+    ${({alert})   => StyledAlert}; 
+    ${({danger})  => StyledDanger};
+    ${({sucess})  => StyledSucess}; 
+    ${({info})    => StyledInfo}; 
+    ${({bell})    => StyledBell}; 
 
 `;
