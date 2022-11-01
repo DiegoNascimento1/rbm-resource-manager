@@ -3,8 +3,8 @@ import InputContainer from "../.././components/atoms/input-container";
 import React from "react";
 
 export default function ExamplePage() {
-  return (
-    <InputContainer labelName="Senha" password={true}/>
+  return (<></>
+    //<InputContainer labelName="Senha" password={true}/>
   )
 
 }
