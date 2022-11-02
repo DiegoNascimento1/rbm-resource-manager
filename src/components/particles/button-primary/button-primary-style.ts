@@ -1,8 +1,14 @@
 import styled from "styled-components";
-import {THEME} from "contants";
+import { THEME } from "contants";
 
-export const StyledButton = styled.button`
-    width: 410px;
+type ListButtonStyle = {
+    tamanho?: string;
+}
+
+
+export const StyledButton = styled.button<ListButtonStyle>`
+    width: 100%;
+    width: ${(props)=> props.tamanho};
     height: 58px;
     border-radius:6px;
     border: none;
