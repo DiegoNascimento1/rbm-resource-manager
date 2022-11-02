@@ -1,9 +1,26 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { THEME } from "contants";
 
 type ListButtonStyle = {
     tamanho?: string;
+    dark?: boolean;
+    light?: boolean;
+    gray?: boolean;
 }
+
+const StyledLight = css`
+    background-color: ${THEME.light.colors.primary2};
+    color:#FFF;
+`
+const StyledDark = css`
+    background-color: ${THEME.dark.colors.primary2};
+    color:#FFF;
+`
+const StyledGray = css`
+    background-color: #F1F3F9;
+    border: 1px solid #DCDCDC;
+    color:  #262424;
+`
 
 
 export const StyledButton = styled.button<ListButtonStyle>`
@@ -13,9 +30,11 @@ export const StyledButton = styled.button<ListButtonStyle>`
     border-radius:6px;
     border: none;
     size: 16px;
-    background-color: ${THEME.light.colors.primary2};
-    color:#FFF;
+    
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
+    ${({dark})=> dark && StyledDark}
+    ${({light})=> light && StyledLight}
+    ${({gray})=> gray && StyledGray}
 `;

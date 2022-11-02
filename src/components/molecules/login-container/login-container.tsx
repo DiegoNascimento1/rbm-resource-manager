@@ -31,7 +31,7 @@ export default function LoginContainer() {
       <InputContainer setInput={setLogin} placeholder={"Digite seu e-mail"} labelName={"E-mail"} password={false}/>
       <InputContainer setInput={setSenha} placeholder={"Digite sua senha"} labelName={"Senha"} password={true}/>
       <LoginChecked textoLabel={"Salvar login"} textoLink={"Esqueci a senha"} textoHref={"https://www.google.com.br/"}/>
-      <ButtonParticle text={"ENTRAR"} onClick={()=>handleLogin()}/>
+      <ButtonParticle light text={"ENTRAR"} onClick={()=>handleLogin()}/>
       <Spacing marginTop={"32px"}/>
       <Typography tag={'p'} size={'14px'} margin={"0px"} decoration={'underline'} fontWeight={"400"}>Primeiro acesso? <a href="#" style={{fontWeight:"600",color:"black"}}>Ative sua conta.</a></Typography>
       <Spacing marginTop={"32px"}/>

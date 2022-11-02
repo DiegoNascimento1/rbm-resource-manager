@@ -25,7 +25,7 @@ export default function RecoverySucessContainer(){
                 Faça login e acesse sua conta
             </Typography>
             <Spacing marginTop={"117px"}/>
-            <ButtonParticle text="FAZER LOGIN"/>
+            <ButtonParticle light text="FAZER LOGIN"/>
             
         </RecoverySucessDiv>
     </>);

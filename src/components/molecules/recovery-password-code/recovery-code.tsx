@@ -27,7 +27,7 @@ export default function RecoveryCodeContainer(){
                 Reenviar código
             </Typography>
             <Spacing marginTop={"32px"}/>
-            <ButtonParticle text="AVANÇAR"/>    
+            <ButtonParticle light text="AVANÇAR"/>    
             
         </RecoveryCodeDiv>
     </>);
