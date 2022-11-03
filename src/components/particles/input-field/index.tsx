@@ -15,7 +15,6 @@ export default function Input({ password, placeholder, value, setInput }: InputP
 
   return (
     <>
-      <input type={'date'}/>
       <StyledInput onChange={(e)=>{setInput(e.target.value)}} placeholder={placeholder} type={displayContent ? "text" : "password"} value={value}/>
       {password && (
         <StyledEyeButton onClick={() => setDisplayContent(!displayContent)}>{displayContent

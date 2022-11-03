@@ -10,6 +10,9 @@ export default function MateusTestPage() {
     <>
       <ScheduleContainer/>
       <ButtonParticle light onClick={()=>logout()} tamanho={'300px'} text='LOGOUT'/>
+      <ButtonParticle reserve text='RESERVAR'/>
+      <ButtonParticle reserved text='RESERVADO'/>
+
     </>
   )
 
