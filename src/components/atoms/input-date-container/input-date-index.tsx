@@ -1,8 +1,9 @@
 import Typography from "../../particles/typography-particles";
-import { StyledDivInputDate, StyledInputDate } from "./input-date-index";
+import { StyledDivInputDate, StyledInputDate } from "./input-date-style";
 
 type InputDateProps = {
   labelName: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function InputDateContainer(props: InputDateProps) {
