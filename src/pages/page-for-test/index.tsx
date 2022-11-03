@@ -1,6 +1,7 @@
 import ScheduleContainer from "components/molecules/schedule-container/schedule-container";
-import ButtonParticle from "components/particles/button-primary/button-primaty-index";
+import InputDateContainer from "components/atoms/input-date-container/index-date-style";
 import { useAuth } from "contexts/auth-context";
+import ButtonParticle from "components/particles/button-primary/button-primaty-index";
 
 export default function MateusTestPage() {
 
@@ -8,11 +9,8 @@ export default function MateusTestPage() {
 
   return (
     <>
+      <ButtonParticle light onClick={()=>logout()} tamanho="300px" text="LOGOUT"/>
       <ScheduleContainer/>
-      <ButtonParticle light onClick={()=>logout()} tamanho={'300px'} text='LOGOUT'/>
-      <ButtonParticle reserve text='RESERVAR'/>
-      <ButtonParticle reserved text='RESERVADO'/>
-
     </>
   )
 
