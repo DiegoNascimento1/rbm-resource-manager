@@ -2,6 +2,8 @@ import ScheduleContainer from "components/molecules/schedule-container/schedule-
 import InputDateContainer from "components/atoms/input-date-container/input-date-index";
 import { useAuth } from "contexts/auth-context";
 import ButtonParticle from "components/particles/button-primary/button-primaty-index";
+import RecoverySucessContainer from "components/molecules/recovery-password-sucess/recovery-sucess";
+import ActivateSucessContainer from "components/molecules/activate-email-sucess/activate-sucess";
 
 export default function MateusTestPage() {
 
@@ -10,7 +12,8 @@ export default function MateusTestPage() {
   return (
     <>
       <ButtonParticle light onClick={()=>logout()} tamanho="300px" text="LOGOUT"/>
-      <ScheduleContainer/>
+      <ActivateSucessContainer/>
+      <RecoverySucessContainer/>
     </>
   )
 
