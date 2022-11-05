@@ -6,8 +6,16 @@ export const StyledInput = styled.input`
   border-radius: 3px;
   margin-top:-1px;
 
-  &:focus{
+  &:hover{
     cursor: pointer;
   }
 
+`;
+
+export const StyledDiv = styled.div`
+ display: flex;
+ 
+ &:hover{
+    cursor: pointer;
+  }
 `;
