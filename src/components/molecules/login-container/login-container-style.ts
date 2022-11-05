@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const LoginContainer = styled.div`
+export const StyleLoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  max-height: 661px;
-  max-width: 475px;
+  /* max-height: 661px;
+  max-width: 475px; */
   padding: 42px 32px 42px 32px;
   align-items: center;
 
