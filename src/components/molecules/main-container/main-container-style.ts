@@ -6,6 +6,7 @@ export const MainContainer = styled.main`
   background-color: ${THEME.light.colors.background_login};
   padding:105px 140px 180px 140px;
   gap:225.26px;
+  min-width: 470px;
 
   @media screen and (max-width: 768px) { flex-direction:column}
  
