@@ -2,8 +2,8 @@ import ButtonParticle from "components/particles/button-primary/button-primaty-i
 import Typography from "components/particles/typography-particles";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "../../particles/spacing-particles/index";
-import DivPersonalized from "components/particles/input-personalizado";
-import { StyledDivContainer } from "components/particles/input-personalizado/style";
+import DivPersonalized from "components/particles/input-token";
+import { StyledDivContainer } from "components/particles/input-token/style";
 
 export default function PassawordToken() {
 
