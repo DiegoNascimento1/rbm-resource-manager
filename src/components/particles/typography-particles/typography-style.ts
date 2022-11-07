@@ -18,5 +18,4 @@ export const Text = styled.span<TextProps>`
 	&:hover{
 		cursor: ${(props) => props.cursorHover ? props.cursorHover : "auto"};
 	}
-	
 `;

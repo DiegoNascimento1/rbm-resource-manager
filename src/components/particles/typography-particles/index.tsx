@@ -10,7 +10,7 @@ type TypographyTypes = {
 	children: ReactNode;
 	decoration?: "underline" | "line-through" | "none";
 	margin?:string;
-	cursorHover?:string;
+	cursorHover?: string;
 };
 
 export default function Typography(props: TypographyTypes) {

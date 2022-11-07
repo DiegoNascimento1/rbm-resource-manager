@@ -8,12 +8,12 @@ import React, { useState } from "react";
 import { useAuth } from "contexts/auth-context";
 
 
-type propsPasswordMaster= {
-  recoverpassword: boolean;
-  setrecoverPassword: React.Dispatch<React.SetStateAction<boolean>>;
+type PropsPasswordMaster= {
+  recoverPassword: boolean;
+  setRecoverPassword: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function PasswordMaster(props:propsPasswordMaster) {
+export default function PasswordMaster(props:PropsPasswordMaster) {
 
   const[loginInput,setLogin] = useState("");
   const[senhaInput,setSenha] = useState("");
@@ -33,7 +33,7 @@ export default function PasswordMaster(props:propsPasswordMaster) {
       <Spacing marginTop={"32px"}/>
       <InputContainer setInput={setLogin} placeholder={"email@rbmweb.com.br"} labelName={"E-mail"} password={false}/>
       <InputContainer setInput={setSenha} placeholder={"Digite sua senha"} labelName={"Senha"} password={true}/>
-      <LoginChecked textoLabel={"Salvar login"} textoLink={"Esqueci a senha"} setRecoverPassaword={props.setrecoverPassword} RecoverPassaword={props.recoverpassword}/>
+      <LoginChecked textoLabel={"Salvar login"} textoLink={"Esqueci a senha"} RecoverPassaword={props.recoverPassword} setRecoverPassword={props.setRecoverPassword} />
       <ButtonParticle light text={'ENTRAR'} onClick={()=>handleLogin()}/>
       <Spacing marginTop={"32px"}/>
       <Typography tag={'p'} size={'14px'} margin={"0px"} decoration={'underline'} fontWeight={"400"}>Primeiro acesso? <a href="#" style={{fontWeight:"600",color:"black"}}>Ative sua conta.</a></Typography>

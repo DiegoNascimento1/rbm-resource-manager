@@ -2,15 +2,19 @@ import ButtonParticle from "components/particles/button-primary/button-primaty-i
 import Typography from "components/particles/typography-particles";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "../../particles/spacing-particles/index";
-import DivPersonalized from "components/particles/input-token";
 import { StyledDivContainer } from "components/particles/input-token/style";
+import InputToken from "components/particles/input-token";
 
-export default function PassawordToken() {
+type PropsPasswordToken= {
+  newPassword: boolean;
+  setNewPassword: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-   //falta fazer a funcão para avançar token
-   //tenho que validar se foi digitado
-   function handleRecoverPassawordToken() {
-    alert("Ativado Recuperar Senha por Token")
+export default function PasswordToken(props:PropsPasswordToken) {
+
+   function handleRecoverPasswordToken() {
+    alert("Ativado Recuperar Senha por Token");
+    props.setNewPassword(!props.newPassword);
   };
 
   //falta fazer a funcão para reenviar código
@@ -30,13 +34,13 @@ export default function PassawordToken() {
             <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"500"} >Código</Typography>
           </StyledDivContainer>
           <Spacing marginTop={"4px"}/>
-          <DivPersonalized/>
+          <InputToken/>
           <Spacing marginTop={"32px"}/>
           <div onClick={()=>handleResendCode()}>
             <Typography tag={'p'} size={'12px'} margin={"0px"} fontWeight={"500"} decoration="underline" cursorHover="pointer" >Reenviar código</Typography>
           </div>
           <Spacing marginTop={"32px"}/>
-          <ButtonParticle light text={"AVANÇAR"} onClick={()=>handleRecoverPassawordToken()}/>
+          <ButtonParticle light text={"AVANÇAR"} onClick={()=>handleRecoverPasswordToken()}/>
           <Spacing marginTop={"32px"}/>
         </>
   );
