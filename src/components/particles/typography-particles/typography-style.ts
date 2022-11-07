@@ -6,6 +6,7 @@ type TextProps = {
 	color?: string;
 	decoration?: "underline" | "line-through" | "none";
 	margin?:string;
+	cursorHover?:string;
 };
 
 export const Text = styled.span<TextProps>`
@@ -14,4 +15,5 @@ export const Text = styled.span<TextProps>`
 	font-weight: ${(props) => props.fontWeight};
 	text-decoration: ${(props) => props.decoration};
 	margin: ${(props) => props.margin};
+	cursor: ${(props) => props.cursorHover};
 `;

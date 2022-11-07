@@ -1,15 +1,21 @@
-import { StyledDivContainer, StyledDivSubContainer } from "./style";
+import { StyledDivContainer, StyledDivSubContainer, StyledDivSubContainerEnd } from "./style";
 import Typography from "components/particles/typography-particles";
 import InputChecked from "components/particles/input-checked";
 import LinkA from "components/particles/link-a";
 
-type propsLoginChecked = {
+type PropsLoginChecked = {
     textoLabel:string;
     textoLink:string;
-    textoHref:string;
+    
+    RecoverPassaword: boolean;
+    setRecoverPassword: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function LoginChecked(props:propsLoginChecked) {
+export default function LoginChecked(props:PropsLoginChecked) {
+  function handleRecover() {
+    alert("esqueci a senha")
+    props.setRecoverPassword(!props.RecoverPassaword);
+  }
   return (
     <StyledDivContainer>
 
@@ -17,11 +23,11 @@ export default function LoginChecked(props:propsLoginChecked) {
           <InputChecked textoLabel={props.textoLabel}/>          
         </StyledDivSubContainer>
 
-        <StyledDivSubContainer>
-          <Typography tag={'p'} size={'14px'} margin={"0px"} decoration={'underline'} fontWeight={"400"}>
-              <LinkA texto={props.textoLink} href={props.textoHref}></LinkA>
+        <StyledDivSubContainerEnd onClick={()=>handleRecover()}>
+          <Typography tag={'p'} size={'14px'} margin={"0px"} decoration={'underline'} fontWeight={"400"} cursorHover={"pointer"}>
+              {props.textoLink}
           </Typography>
-        </StyledDivSubContainer>
+        </StyledDivSubContainerEnd>
         
     </StyledDivContainer>
   );

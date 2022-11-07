@@ -10,6 +10,7 @@ type TypographyTypes = {
 	children: ReactNode;
 	decoration?: "underline" | "line-through" | "none";
 	margin?:string;
+	cursorHover?: string;
 };
 
 export default function Typography(props: TypographyTypes) {
@@ -21,6 +22,7 @@ export default function Typography(props: TypographyTypes) {
 			fontWeight={props.fontWeight}
 			decoration={props.decoration}
 			margin={props.margin}
+			cursorHover={props.cursorHover}
 		>
 			{props.children}
 		</Styled.Text>

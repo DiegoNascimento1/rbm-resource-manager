@@ -6,17 +6,17 @@ import Spacing from "components/particles/spacing-particles";
 import React, { useState } from "react";
 
 
-type propsPassawordRecover= {
+type propsPasswordRecover= {
   recoverToken: boolean;  // falta tipara corretamente
   setRecoverToken: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function PassawordRecover(props:propsPassawordRecover) {
+export default function PasswordRecover(props:propsPasswordRecover) {
 
   const[loginInput,setLogin] = useState("");
 
   //falta fazer a funcão
-  function handleRecoverPassaword() {
+  function handleRecoverPassword() {
     alert("Ativadando Recuperar Senha")
     props.setRecoverToken(!props.recoverToken)
   }
@@ -31,7 +31,7 @@ export default function PassawordRecover(props:propsPassawordRecover) {
         <Spacing marginTop={"32px"}/>
         <InputContainer setInput={setLogin} placeholder={"email@rbmweb.com.br"} labelName={"E-mail"} password={false}/>
         <Spacing marginTop={"24px"}/>
-        <ButtonParticle light text={'AVANÇAR'} onClick={()=>handleRecoverPassaword()}/>
+        <ButtonParticle light text={'AVANÇAR'} onClick={()=>handleRecoverPassword()}/>
         <Spacing marginTop={"32px"}/>
     </>
   );
