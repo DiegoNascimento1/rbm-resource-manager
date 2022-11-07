@@ -1,6 +1,5 @@
 import { StyledInput, StyledDivContainer, StyledDivSubContainer } from "./style";
 import {THEME} from "contants";
-
 import Typography from "components/particles/typography-particles";
 import { useState } from "react";
 
@@ -8,8 +7,6 @@ type propsInputChecked = {
   textoLabel:string
 };
 
-// estou pensando em colocar tudo dentro de uma div
-// ao clicar na div muda o status do checked
 export default function InputChecked(props: propsInputChecked) {
   const [checked, setChecked] = useState<boolean>(false)
   return (

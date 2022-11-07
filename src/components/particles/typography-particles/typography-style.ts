@@ -15,5 +15,7 @@ export const Text = styled.span<TextProps>`
 	font-weight: ${(props) => props.fontWeight};
 	text-decoration: ${(props) => props.decoration};
 	margin: ${(props) => props.margin};
-	cursor: ${(props) => props.cursorHover};
+	&:hover{
+		cursor: ${(props) => props.cursorHover ? props.cursorHover : "auto"};
+	}
 `;

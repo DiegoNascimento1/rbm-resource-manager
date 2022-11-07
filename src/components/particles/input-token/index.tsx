@@ -68,6 +68,7 @@ export default function InputToken() {
      <StyledInputPersonalized ref={elToken4} placeholder="4" type={"text"} value={token4} onChange={()=>fxToken4()}/>
      <StyledInputPersonalized ref={elToken5} placeholder="5" type={"text"} value={token5} onChange={()=>fxToken5()}/>
      <StyledInputPersonalized ref={elToken6} placeholder="6" type={"text"} value={token6} onChange={()=>fxToken6()}/>
+
     </StyledDivContainer>
   );
 };

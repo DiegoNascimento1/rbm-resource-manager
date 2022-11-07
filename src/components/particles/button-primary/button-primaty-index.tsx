@@ -8,6 +8,8 @@ type ListButtonProps = {
   light?: boolean;
   dark?: boolean;
   gray?: boolean;
+  reserve ?: boolean;
+  reserved ?: boolean;
 }
 
 
@@ -20,6 +22,8 @@ export default function ButtonParticle(props: ListButtonProps) {
       dark={props.dark}
       gray={props.dark}
       light={props.light}
+      reserve={props.reserve}
+      reserved={props.reserved}
       tamanho={props.tamanho}
       onClick={props.onClick}
       >{props.text}</StyledButton>

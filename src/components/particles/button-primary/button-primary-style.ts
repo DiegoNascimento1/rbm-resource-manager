@@ -6,7 +6,32 @@ type ListButtonStyle = {
     dark?: boolean;
     light?: boolean;
     gray?: boolean;
+    reserve ?: boolean;
+    reserved ?: boolean;
 }
+
+const StyledReserve = css`
+    width: 94px;
+    height: 24px;
+
+    background-color: #2AB451;
+    color:#FFF;
+    
+    font-weight: 500;
+    font-size: 12px;
+`
+const StyledReserved = css`
+    width: 94px;
+    height: 24px;
+
+    background-color:#909194;
+    color:#FFF;
+    
+    font-weight: 500;
+    font-size: 12px;
+
+    cursor: auto;
+`
 
 const StyledLight = css`
     background-color: ${THEME.light.colors.primary2};
@@ -37,4 +62,6 @@ export const StyledButton = styled.button<ListButtonStyle>`
     ${({dark})=> dark && StyledDark}
     ${({light})=> light && StyledLight}
     ${({gray})=> gray && StyledGray}
+    ${({reserve})=> reserve && StyledReserve}
+    ${({reserved})=> reserved && StyledReserved}
 `;

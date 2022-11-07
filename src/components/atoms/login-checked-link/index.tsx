@@ -1,12 +1,10 @@
 import { StyledDivContainer, StyledDivSubContainer, StyledDivSubContainerEnd } from "./style";
 import Typography from "components/particles/typography-particles";
 import InputChecked from "components/particles/input-checked";
-import LinkA from "components/particles/link-a";
 
 type PropsLoginChecked = {
     textoLabel:string;
     textoLink:string;
-    
     RecoverPassaword: boolean;
     setRecoverPassword: React.Dispatch<React.SetStateAction<boolean>>;
 };
