@@ -9,6 +9,7 @@ import React, { useState } from "react";
 type propsPasswordRecover= {
   recoverToken: boolean;  // falta tipara corretamente
   setRecoverToken: React.Dispatch<React.SetStateAction<boolean>>;
+  activate: true | false;
 }
 
 export default function PasswordRecover(props:propsPasswordRecover) {
@@ -20,12 +21,14 @@ export default function PasswordRecover(props:propsPasswordRecover) {
     alert("Ativadando Recuperar Senha")
     props.setRecoverToken(!props.recoverToken)
   }
- 
+
+  // let activate = true;
+  // let recover =true;
   return (
     <>
         <LogoSvg/>
         <Spacing marginTop={"54px"}/>
-        <Typography tag={'p'} size={'20px'} margin={"0px"} fontWeight={"700"}>Recuperar senha</Typography>
+        <Typography tag={'p'} size={'20px'} margin={"0px"} fontWeight={"700"}>{props.activate? "Ativar minha conta":"Recuperar senha"}</Typography>
         <Spacing marginTop={"10px"}/>
         <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Informe seu e-mail empresarial</Typography>
         <Spacing marginTop={"32px"}/>
@@ -33,6 +36,8 @@ export default function PasswordRecover(props:propsPasswordRecover) {
         <Spacing marginTop={"24px"}/>
         <ButtonParticle light text={'AVANÇAR'} onClick={()=>handleRecoverPassword()}/>
         <Spacing marginTop={"32px"}/>
+        {props.activate &&
+         <Typography tag={'p'} size={'10px'} margin={"0px"} fontWeight={"400"}>Caso ainda não tenha recebido seu e-mail entre em contato como RH.</Typography>}
     </>
   );
 };

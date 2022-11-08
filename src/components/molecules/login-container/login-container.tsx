@@ -19,15 +19,15 @@ export default function LoginContainer() {
       }
 
       {((!recuperarToken)&&(recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PassawordRecover recoverToken={recuperarToken} setRecoverToken={setRecuperarToken}/>
+        <PassawordRecover recoverToken={recuperarToken} setRecoverToken={setRecuperarToken} activate = {false}/>
       }
 
       {((recuperarToken)&&(recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PassawordToken newPassword={novaSenha} setNewPassword={setNovaSenha}/>
+        <PassawordToken newPassword={novaSenha} setNewPassword={setNovaSenha} activate = {true}/>
       }
 
       {((recuperarToken)&&(recuperarSenha)&&(novaSenha)&&(!finalizarSenha))&& 
-        <PasswordNew finalizedPassword={finalizarSenha} setFinalizedPassword={setFinalizarSenha}/>
+        <PasswordNew finalizedPassword={finalizarSenha} setFinalizedPassword={setFinalizarSenha} activate = {true}/>
       }
 
       {((recuperarToken)&&(recuperarSenha)&&(novaSenha)&&(finalizarSenha))&& 

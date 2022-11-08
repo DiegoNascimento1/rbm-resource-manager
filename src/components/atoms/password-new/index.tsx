@@ -9,6 +9,7 @@ import IconAndText from "components/particles/icon-and-text";
 type propsPasswordNew= {
     finalizedPassword: boolean;
     setFinalizedPassword: React.Dispatch<React.SetStateAction<boolean>>;
+    activate: true | false;
 }
 
 export default function PasswordNew(props:propsPasswordNew) {
@@ -26,7 +27,7 @@ export default function PasswordNew(props:propsPasswordNew) {
     <>
         <LogoSvg/>
         <Spacing marginTop={"54px"}/>
-        <Typography tag={'p'} size={'20px'} margin={"0px"} fontWeight={"700"}>Recuperar senha</Typography>
+        <Typography tag={'p'} size={'20px'} margin={"0px"} fontWeight={"700"}>{props.activate? "Ativar minha conta":"Recuperar senha"}</Typography>
         <Spacing marginTop={"10px"}/>
         <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Redefina abaixo a senha da conta.</Typography>
         <Spacing marginTop={"22px"}/>
