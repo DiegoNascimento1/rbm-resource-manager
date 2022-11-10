@@ -22,8 +22,6 @@ export default function PasswordRecover(props:propsPasswordRecover) {
     props.setRecoverToken(!props.recoverToken)
   }
 
-  // let activate = true;
-  // let recover =true;
   return (
     <>
         <LogoSvg/>

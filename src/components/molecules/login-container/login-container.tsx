@@ -11,23 +11,24 @@ export default function LoginContainer() {
   const[recuperarToken, setRecuperarToken]= useState<boolean>(false);
   const[novaSenha, setNovaSenha]= useState<boolean>(false);
   const[finalizarSenha, setFinalizarSenha]= useState<boolean>(false);
+  const[ativarConta, setAtivarConta] =useState<boolean>(false);
 
   return (
-    <StyleLoginContainer>
+    <StyleLoginContainer>   
       {((!recuperarToken)&&(!recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PasswordMaster recoverPassword={recuperarSenha} setRecoverPassword={setRecuperarSenha}/>
+        <PasswordMaster recoverPassword={recuperarSenha} setRecoverPassword={setRecuperarSenha} setActivateAccount={setAtivarConta}/>
       }
 
       {((!recuperarToken)&&(recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PassawordRecover recoverToken={recuperarToken} setRecoverToken={setRecuperarToken} activate = {false}/>
+        <PassawordRecover recoverToken={recuperarToken} setRecoverToken={setRecuperarToken} activate = {ativarConta}/>
       }
 
       {((recuperarToken)&&(recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PassawordToken newPassword={novaSenha} setNewPassword={setNovaSenha} activate = {true}/>
+        <PassawordToken newPassword={novaSenha} setNewPassword={setNovaSenha} activate = {ativarConta}/>
       }
 
       {((recuperarToken)&&(recuperarSenha)&&(novaSenha)&&(!finalizarSenha))&& 
-        <PasswordNew finalizedPassword={finalizarSenha} setFinalizedPassword={setFinalizarSenha} activate = {true}/>
+        <PasswordNew finalizedPassword={finalizarSenha} setFinalizedPassword={setFinalizarSenha} activate = {ativarConta}/>
       }
 
       {((recuperarToken)&&(recuperarSenha)&&(novaSenha)&&(finalizarSenha))&& 
@@ -36,6 +37,8 @@ export default function LoginContainer() {
             setRecoverToken={setRecuperarToken}
             setNewPassword={setNovaSenha}
             setFinalizedPassword={setFinalizarSenha}
+            setActivateAccount={setAtivarConta}
+            activate = {ativarConta}
         />
       }
     </StyleLoginContainer>
