@@ -3,8 +3,9 @@ import ButtonParticle from "components/particles/button-primary/button-primaty-i
 import Typography from "components/particles/typography-particles";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "components/particles/spacing-particles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import IconAndText from "components/particles/icon-and-text";
+import { fxRegexValidateUppercase, fxRegexValidateSpecialCharacters, fxRegexValidateNumber} from "functions/regex-validate";
 
 type propsPasswordNew= {
     finalizedPassword: boolean;
@@ -13,15 +14,19 @@ type propsPasswordNew= {
 }
 
 export default function PasswordNew(props:propsPasswordNew) {
-    //  tenho que redefinir o useState
   const[loginInput,setLogin] = useState("");    //  falta terminara de configurar
-  const [confirmState, setConfirmState] = useState<boolean>(true)
+  const [confirmState, setConfirmState] = useState<boolean>(true);
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
-  //falta fazer a funcão
   function handleNewPassword() {
-    alert("Criando nova senha")
-    props.setFinalizedPassword(!props.finalizedPassword)
+    alert("Criando nova senha");
+    props.setFinalizedPassword(!props.finalizedPassword);
   }
+
+  useEffect(()=>{
+    confirmPassword && (confirmPassword === newPassword) && alert("Senha confirmada");
+  },[confirmPassword]);
  
   return (
     <>
@@ -36,7 +41,7 @@ export default function PasswordNew(props:propsPasswordNew) {
         {confirmState && <IconAndText 
             icon={true} 
             texto={true} 
-            confirm={false}
+            confirm={newPassword.length >=8 ? true : false}
             sizeIcon={"10px"} 
             margimComponents={"5px"} 
             sizeTexto={"10px"}
@@ -46,7 +51,7 @@ export default function PasswordNew(props:propsPasswordNew) {
         {confirmState && <IconAndText 
             icon={true} 
             texto={true} 
-            confirm={false}
+            confirm={fxRegexValidateUppercase(newPassword)}
             sizeIcon={"10px"} 
             margimComponents={"5px"} 
             sizeTexto={"10px"}
@@ -56,7 +61,7 @@ export default function PasswordNew(props:propsPasswordNew) {
         {confirmState && <IconAndText 
             icon={true} 
             texto={true} 
-            confirm={false}
+            confirm={fxRegexValidateNumber(newPassword)}
             sizeIcon={"10px"} 
             margimComponents={"5px"} 
             sizeTexto={"10px"}
@@ -66,16 +71,16 @@ export default function PasswordNew(props:propsPasswordNew) {
         {confirmState && <IconAndText 
             icon={true} 
             texto={true} 
-            confirm={true}
+            confirm={fxRegexValidateSpecialCharacters(newPassword)}
             sizeIcon={"10px"} 
             margimComponents={"5px"} 
             sizeTexto={"10px"}
             margimTexto={"0px"} 
             fontWeightTexto={"400"} 
             writtenTexto={`Pelo menos uma caractere especial (Ex:!@#$%"&*)`}></IconAndText>}
-        <InputContainer setInput={setLogin} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true}/>
+        <InputContainer setInput={setNewPassword} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true}/>
         <Spacing marginTop={"-20px"}/>
-        <InputContainer setInput={setLogin} placeholder={"Digite a sua senha"} labelName={"Confirma senha"} password={true}/>
+        <InputContainer setInput={setConfirmPassword} placeholder={"Digite a sua senha"} labelName={"Confirma senha"} password={true}/>
         <ButtonParticle light text={'CONFIRMAR'} onClick={()=>handleNewPassword()}/>
         <Spacing marginTop={"32px"}/>
     </>

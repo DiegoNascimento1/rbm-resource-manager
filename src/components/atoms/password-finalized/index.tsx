@@ -10,7 +10,9 @@ type PropsPasswordFinalized= {
     setRecoverPassword: React.Dispatch<React.SetStateAction<boolean>>;
     setRecoverToken: React.Dispatch<React.SetStateAction<boolean>>;
     setNewPassword: React.Dispatch<React.SetStateAction<boolean>>;
-    setFinalizedPassword: React.Dispatch<React.SetStateAction<boolean>>;
+    setFinalizedPassword: React.Dispatch<React.SetStateAction<boolean>>;    
+    setActivateAccount: React.Dispatch<React.SetStateAction<boolean>>;
+    activate: true | false;
 }
 
 export default function PasswordFinalized(props:PropsPasswordFinalized){
@@ -21,6 +23,7 @@ export default function PasswordFinalized(props:PropsPasswordFinalized){
         props.setRecoverPassword(false)
         props.setRecoverToken(false)
         props.setNewPassword (false)
+        props.setActivateAccount(false)
     }
 
     return (
@@ -29,11 +32,11 @@ export default function PasswordFinalized(props:PropsPasswordFinalized){
         <Spacing marginTop={"104px"}/>
         <img src={sucessSvg}/>
         <Spacing marginTop={"29px"}/>
-        <Typography tag="h1" size="20px" fontWeight="700" color={THEME.light.colors.secondary3} margin="0">Senha alterada!</Typography>
+        <Typography tag="h1" size="20px" fontWeight="700" color={THEME.light.colors.secondary3} margin="0">{props.activate? "Conta ativada!":"Senha alterada!"}</Typography>
         <Spacing marginTop={"29px"}/>
-        <Typography tag="h1" size="14px" fontWeight="400" color={THEME.light.colors.secondary3} margin="0">Senha alterada com sucesso.</Typography>
+        <Typography tag="h1" size="14px" fontWeight="400" color={THEME.light.colors.secondary3} margin="0">{props.activate? "Sua conta foi ativada. Faça Login e":"Senha alterada com sucesso."}</Typography>
         <Spacing marginTop={"5px"}/>
-        <Typography tag="h1" size="14px" fontWeight="400" color={THEME.light.colors.secondary3} margin="0">Façalogin e acesse sua conta.</Typography>
+        <Typography tag="h1" size="14px" fontWeight="400" color={THEME.light.colors.secondary3} margin="0">{props.activate? "acesse sua conta.":"Faça login e acesse sua conta."}</Typography>
         <Spacing marginTop={"100px"}/>
         <ButtonParticle light text="FAZER LOGIN" onClick={()=>handleLogin()}/>
     </StyledDivContainer>)

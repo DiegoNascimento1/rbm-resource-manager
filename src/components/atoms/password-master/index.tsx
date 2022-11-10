@@ -11,7 +11,10 @@ import { useAuth } from "contexts/auth-context";
 type PropsPasswordMaster= {
   recoverPassword: boolean;
   setRecoverPassword: React.Dispatch<React.SetStateAction<boolean>>;
+  setActivateAccount: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+
 
 export default function PasswordMaster(props:PropsPasswordMaster) {
 
@@ -21,6 +24,11 @@ export default function PasswordMaster(props:PropsPasswordMaster) {
 
   function handleLogin() {
     login(loginInput,senhaInput)
+  }
+
+  function ativar(){
+    props.setActivateAccount(true)
+    props.setRecoverPassword(true)
   }
 
   return (
@@ -36,7 +44,10 @@ export default function PasswordMaster(props:PropsPasswordMaster) {
       <LoginChecked textoLabel={"Salvar login"} textoLink={"Esqueci a senha"} RecoverPassaword={props.recoverPassword} setRecoverPassword={props.setRecoverPassword} />
       <ButtonParticle light text={'ENTRAR'} onClick={()=>handleLogin()}/>
       <Spacing marginTop={"32px"}/>
-      <Typography tag={'p'} size={'14px'} margin={"0px"} decoration={'underline'} fontWeight={"400"}>Primeiro acesso? <a href="#" style={{fontWeight:"600",color:"black"}}>Ative sua conta.</a></Typography>
+      <Typography tag={'p'} size={'14px'} margin={"0px"} decoration={'underline'} fontWeight={"400"}>
+        Primeiro acesso? 
+        <a href="#" style={{fontWeight:"600",color:"black"}} onClick={()=>ativar()}>Ative sua conta.</a>
+        </Typography>
       <Spacing marginTop={"32px"}/>
     </>
   );
