@@ -14,19 +14,33 @@ type propsPasswordNew= {
 }
 
 export default function PasswordNew(props:propsPasswordNew) {
-  const[loginInput,setLogin] = useState("");    //  falta terminara de configurar
   const [confirmState, setConfirmState] = useState<boolean>(true);
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   function handleNewPassword() {
-    alert("Criando nova senha");
-    props.setFinalizedPassword(!props.finalizedPassword);
-  }
+    if ((confirmPassword === newPassword) 
+      && ( newPassword.length >=8)
+      && ( fxRegexValidateUppercase(newPassword))
+      && ( fxRegexValidateNumber(newPassword    )    )
+      && ( fxRegexValidateSpecialCharacters(newPassword))){
+        alert("Senha Confirmada");
+        props.setFinalizedPassword(!props.finalizedPassword);
+    }else{
+      alert("Senha Errada ou não preenche os requesitos necessários!");
+    };
+  };
 
   useEffect(()=>{
-    confirmPassword && (confirmPassword === newPassword) && alert("Senha confirmada");
-  },[confirmPassword]);
+    if ((confirmPassword === newPassword) 
+    && ( newPassword.length >=8)
+    && ( fxRegexValidateUppercase(newPassword))
+    && ( fxRegexValidateNumber(newPassword))
+    && ( fxRegexValidateSpecialCharacters(newPassword))){
+      alert("Senha Confirmada");
+      props.setFinalizedPassword(!props.finalizedPassword);
+    }
+  },[confirmPassword, newPassword]);
  
   return (
     <>
