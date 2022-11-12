@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { StyledInputPersonalized, StyledDivContainer } from "./style";
 
-export default function InputToken() {
+type propsInputToken={
+  confirmToken: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function InputToken(props:propsInputToken) {
   const [token1, setToken1] = useState<string | undefined>("")
   const [token2, setToken2] = useState<string | undefined>("")
   const [token3, setToken3] = useState<string | undefined>("")
@@ -22,7 +26,8 @@ export default function InputToken() {
   }, []);
 
   useEffect(() => {
-    token1 && token2 && token3 && token4 && token5 && token6 && alert(token1 + token2 + token3 + token4 + token5 + token6)
+    // token1 && token2 && token3 && token4 && token5 && token6 && alert(token1 + token2 + token3 + token4 + token5 + token6)
+    token1 && token2 && token3 && token4 && token5 && token6 && props.confirmToken(true);
   }, [token1, token2, token3, token4, token5, token6]);
 
   function fxToken1(){

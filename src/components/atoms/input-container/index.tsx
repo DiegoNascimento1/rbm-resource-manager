@@ -8,13 +8,14 @@ type InputContainerProps = {
   placeholder?: string;
   value ?: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
+  elementFocus?: true | false;
 };
 
 export default function InputContainer(props: InputContainerProps) {
   return (
     <StyledInputContainer>
       <StyledLabel>{props.labelName}</StyledLabel>
-      <Input value={props.value} setInput={props.setInput} placeholder={props.placeholder} password={props.password}/>
+      <Input value={props.value} setInput={props.setInput} placeholder={props.placeholder} password={props.password} elementFocus={props.elementFocus}/>
     </StyledInputContainer>
   );
 }

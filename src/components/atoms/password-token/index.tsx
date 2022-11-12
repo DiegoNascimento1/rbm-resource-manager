@@ -4,6 +4,7 @@ import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "../../particles/spacing-particles/index";
 import { StyledDivContainer } from "components/particles/input-token/style";
 import InputToken from "components/particles/input-token";
+import { useEffect, useState } from "react";
 
 type PropsPasswordToken= {
   newPassword: boolean;
@@ -13,11 +14,18 @@ type PropsPasswordToken= {
 
 export default function PasswordToken(props:PropsPasswordToken) {
 
-   function handleRecoverPasswordToken() {
-    alert("Ativado Recuperar Senha por Token");
-    props.setNewPassword(!props.newPassword);
-  };
+  const [confirmaToken, setConfirmaToken]= useState<boolean>(false);
 
+   function handleRecoverPasswordToken() {
+    !confirmaToken && alert("Erro no token");
+    confirmaToken && alert("Ativado Recuperar Senha por Token");
+    confirmaToken && props.setNewPassword(!props.newPassword);
+  };
+  useEffect(() => {
+    confirmaToken && alert("Ativado Recuperar Senha por Token");
+    confirmaToken && props.setNewPassword(!props.newPassword);
+  }, [confirmaToken]);
+  
   //falta fazer a funcão para reenviar código
   function handleResendCode() {
     alert("Reenviar Código")
@@ -35,7 +43,7 @@ export default function PasswordToken(props:PropsPasswordToken) {
             <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"500"} >Código</Typography>
           </StyledDivContainer>
           <Spacing marginTop={"4px"}/>
-          <InputToken/>
+          <InputToken confirmToken={setConfirmaToken}/>
           <Spacing marginTop={"32px"}/>
           <div onClick={()=>handleResendCode()}>
             <Typography tag={'p'} size={'12px'} margin={"0px"} fontWeight={"500"} decoration="underline" cursorHover="pointer" >Reenviar código</Typography>
