@@ -92,7 +92,7 @@ export default function PasswordNew(props:propsPasswordNew) {
             margimTexto={"0px"} 
             fontWeightTexto={"400"} 
             writtenTexto={`Pelo menos uma caractere especial (Ex:!@#$%"&*)`}></IconAndText>}
-        <InputContainer setInput={setNewPassword} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true}/>
+        <InputContainer setInput={setNewPassword} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true} elementFocus={true}/>
         <Spacing marginTop={"-20px"}/>
         <InputContainer setInput={setConfirmPassword} placeholder={"Digite a sua senha"} labelName={"Confirma senha"} password={true}/>
         <ButtonParticle light text={'CONFIRMAR'} onClick={()=>handleNewPassword()}/>
