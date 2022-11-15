@@ -22,12 +22,14 @@ export default function PasswordMaster(props:PropsPasswordMaster) {
 
   function handleLogin() {
     //  fazer uma verificação
-    const validatedEmail = fxRegexValidateEmail(loginInput);
+    const validatedEmail = loginInput.length >=6;
+    // const validatedEmail = fxRegexValidateEmail(loginInput);
     const validateSenha = senhaInput.length >=8 && fxRegexValidateNumber(senhaInput) && fxRegexValidateUppercase(senhaInput) && fxRegexValidateSpecialCharacters(senhaInput);
 
     !validatedEmail && alert("Email errado");
     !validateSenha && alert("Senha fora do padrão")
     validatedEmail && validateSenha && login(loginInput,senhaInput);
+    // validateSenha && login(loginInput,senhaInput);
   }
 
   function ativar(){
