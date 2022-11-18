@@ -12,19 +12,20 @@ export default function LoginContainer() {
   const[novaSenha, setNovaSenha]= useState<boolean>(false);
   const[finalizarSenha, setFinalizarSenha]= useState<boolean>(false);
   const[ativarConta, setAtivarConta] =useState<boolean>(false);
+  const[email, setEmail] = useState<string>("");
 
   return (
     <StyleLoginContainer>   
       {((!recuperarToken)&&(!recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PasswordMaster recoverPassword={recuperarSenha} setRecoverPassword={setRecuperarSenha} setActivateAccount={setAtivarConta}/>
+        <PasswordMaster recoverPassword={recuperarSenha} setRecoverPassword={setRecuperarSenha} setActivateAccount={setAtivarConta} />
       }
 
       {((!recuperarToken)&&(recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PassawordRecover recoverToken={recuperarToken} setRecoverToken={setRecuperarToken} activate = {ativarConta}/>
+        <PassawordRecover recoverToken={recuperarToken} setRecoverToken={setRecuperarToken} recoverEmail={email} setRecoverEmail={setEmail} activate = {ativarConta}/>
       }
 
       {((recuperarToken)&&(recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PassawordToken newPassword={novaSenha} setNewPassword={setNovaSenha} activate = {ativarConta}/>
+        <PassawordToken newPassword={novaSenha} setNewPassword={setNovaSenha} recoverEmail={email} setRecoverEmail={setEmail} activate = {ativarConta}/>
       }
 
       {((recuperarToken)&&(recuperarSenha)&&(novaSenha)&&(!finalizarSenha))&& 

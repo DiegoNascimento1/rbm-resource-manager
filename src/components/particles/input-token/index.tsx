@@ -3,6 +3,7 @@ import { StyledInputPersonalized, StyledDivContainer } from "./style";
 
 type propsInputToken={
   confirmToken: React.Dispatch<React.SetStateAction<boolean>>;
+  setCodeToken: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function InputToken(props:propsInputToken) {
@@ -27,6 +28,7 @@ export default function InputToken(props:propsInputToken) {
 
   useEffect(() => {
     // token1 && token2 && token3 && token4 && token5 && token6 && alert(token1 + token2 + token3 + token4 + token5 + token6)
+    token1 && token2 && token3 && token4 && token5 && token6 && props.setCodeToken(token1 + token2 + token3 + token4 + token5 + token6)
     token1 && token2 && token3 && token4 && token5 && token6 && props.confirmToken(true);
   }, [token1, token2, token3, token4, token5, token6]);
 
