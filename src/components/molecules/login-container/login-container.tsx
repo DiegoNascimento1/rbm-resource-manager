@@ -5,6 +5,7 @@ import PasswordMaster from "components/atoms/password-master";
 import PassawordRecover from "components/atoms/password-recover";
 import PasswordNew from "components/atoms/password-new";
 import PasswordFinalized from "components/atoms/password-finalized";
+import LoginProvider from "../../../contexts/login-context";
 
 export default function LoginContainer() {
   const[recuperarSenha, setRecuperarSenha]= useState<boolean>(false);
@@ -15,33 +16,35 @@ export default function LoginContainer() {
   const[email, setEmail] = useState<string>("");
 
   return (
-    <StyleLoginContainer>   
-      {((!recuperarToken)&&(!recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PasswordMaster recoverPassword={recuperarSenha} setRecoverPassword={setRecuperarSenha} setActivateAccount={setAtivarConta} />
-      }
+    <LoginProvider>
+      <StyleLoginContainer>   
+        {((!recuperarToken)&&(!recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
+          <PasswordMaster recoverPassword={recuperarSenha} setRecoverPassword={setRecuperarSenha} setActivateAccount={setAtivarConta} />
+        }
 
-      {((!recuperarToken)&&(recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PassawordRecover recoverToken={recuperarToken} setRecoverToken={setRecuperarToken} recoverEmail={email} setRecoverEmail={setEmail} activate = {ativarConta}/>
-      }
+        {((!recuperarToken)&&(recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
+          <PassawordRecover recoverToken={recuperarToken} setRecoverToken={setRecuperarToken} recoverEmail={email} setRecoverEmail={setEmail} activate = {ativarConta}/>
+        }
 
-      {((recuperarToken)&&(recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
-        <PassawordToken newPassword={novaSenha} setNewPassword={setNovaSenha} recoverEmail={email} setRecoverEmail={setEmail} activate = {ativarConta}/>
-      }
+        {((recuperarToken)&&(recuperarSenha)&&(!novaSenha)&&(!finalizarSenha))&& 
+          <PassawordToken newPassword={novaSenha} setNewPassword={setNovaSenha} recoverEmail={email} setRecoverEmail={setEmail} activate = {ativarConta}/>
+        }
 
-      {((recuperarToken)&&(recuperarSenha)&&(novaSenha)&&(!finalizarSenha))&& 
-        <PasswordNew finalizedPassword={finalizarSenha} setFinalizedPassword={setFinalizarSenha} activate = {ativarConta}/>
-      }
+        {((recuperarToken)&&(recuperarSenha)&&(novaSenha)&&(!finalizarSenha))&& 
+          <PasswordNew finalizedPassword={finalizarSenha} setFinalizedPassword={setFinalizarSenha} activate = {ativarConta}/>
+        }
 
-      {((recuperarToken)&&(recuperarSenha)&&(novaSenha)&&(finalizarSenha))&& 
-        <PasswordFinalized 
-            setRecoverPassword={setRecuperarSenha}
-            setRecoverToken={setRecuperarToken}
-            setNewPassword={setNovaSenha}
-            setFinalizedPassword={setFinalizarSenha}
-            setActivateAccount={setAtivarConta}
-            activate = {ativarConta}
-        />
-      }
-    </StyleLoginContainer>
+        {((recuperarToken)&&(recuperarSenha)&&(novaSenha)&&(finalizarSenha))&& 
+          <PasswordFinalized 
+              setRecoverPassword={setRecuperarSenha}
+              setRecoverToken={setRecuperarToken}
+              setNewPassword={setNovaSenha}
+              setFinalizedPassword={setFinalizarSenha}
+              setActivateAccount={setAtivarConta}
+              activate = {ativarConta}
+          />
+        }
+      </StyleLoginContainer>
+    </LoginProvider>
   );
 };
