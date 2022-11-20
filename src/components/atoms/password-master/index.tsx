@@ -4,9 +4,10 @@ import Typography from "components/particles/typography-particles";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "components/particles/spacing-particles";
 import LoginChecked from "components/atoms/login-checked-link";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useAuth } from "contexts/auth-context";
 import { fxRegexValidateUppercase, fxRegexValidateSpecialCharacters, fxRegexValidateNumber, fxRegexValidateEmail} from "functions/regex-validate";
+import { contextLogin } from "contexts/login-context";
 
 type PropsPasswordMaster= {
   recoverPassword: boolean;
@@ -19,6 +20,8 @@ export default function PasswordMaster(props:PropsPasswordMaster) {
   const[loginInput,setLogin] = useState("");
   const[senhaInput,setSenha] = useState("");
   const{login}  = useAuth();
+
+  const loginContext = useContext(contextLogin);
 
   function handleLogin() {
     //  fazer uma verificação
@@ -37,10 +40,15 @@ export default function PasswordMaster(props:PropsPasswordMaster) {
     props.setRecoverPassword(true)
   }
 
+  useEffect(()=>{
+    // loginContext.dadosData?.fx.fxTrocarNome('Trocado por objeto contruido');
+  },[]);
+
   return (
     <>
       <LogoSvg/>
       <Spacing marginTop={"54px"}/>
+      {/* <h1>{loginContext.dadosData?.dados.usuario}</h1> */}
       <Typography tag={'p'} size={'20px'} margin={"0px"} fontWeight={"700"}>Entrar na minha conta</Typography>
       <Spacing marginTop={"10px"}/>
       <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Acesse sua conta abaixo =)</Typography>
