@@ -1,4 +1,4 @@
-import {StyleLoginContainer} from "./login-container-style";
+import {StyleLoginContainer} from "./style";
 import { useState } from "react";
 import PassawordToken from "components/atoms/password-token";
 import PasswordMaster from "components/atoms/password-master";
