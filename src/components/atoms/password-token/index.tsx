@@ -4,68 +4,73 @@ import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "../../particles/spacing-particles/index";
 import { StyledDivContainer } from "components/particles/input-token/style";
 import InputToken from "components/particles/input-token";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RequestAtivarParams } from "services/api/base/types";
 import useRequest from "hooks/useResquest";
 import { requestAtivar } from "services/api/base";
+import { contextLogin } from "contexts/login-context";
 
-type PropsPasswordToken= {
-  newPassword: boolean;
-  setNewPassword: React.Dispatch<React.SetStateAction<boolean>>;
-  activate: true | false;
-  recoverEmail: string;
-  setRecoverEmail: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export default function PasswordToken(props:PropsPasswordToken) {
+export default function PasswordToken() {
 
   const [confirmaToken, setConfirmaToken]= useState<boolean>(false);
   const [state, request] = useRequest();
   const [codigoToken, setCodigoToken] = useState<string>("");
   const [temporizador, setTemporizador] = useState<boolean>(false);
 
+  const contextoLogin = useContext(contextLogin);
+
+  const dadosLogin = contextoLogin.funcoes?.dados;
+  const fxLogin = contextoLogin.funcoes?.setState;
+
   async function requestActivateAccount() {
     setTemporizador(true);
     try {
-      await request(requestAtivar, "request_ativar", { login: props.recoverEmail, token: codigoToken } as RequestAtivarParams);
-      // await request(requestAtivar, "request_ativar", { login: forms.email, token: forms.pin } as RequestAtivarParams);
+      await request(requestAtivar, "request_ativar", { login: dadosLogin?.email, token: codigoToken } as RequestAtivarParams);
+      fxLogin?.setChangeNewPassword(true);
     } catch {}
   }
 
-   function handleRecoverPasswordToken() {
-    !confirmaToken && alert("Erro no token");
-    confirmaToken && requestActivateAccount();
-    // confirmaToken && props.setNewPassword(!props.newPassword);
+   function handleRecoverPasswordToken() {    
+    if(confirmaToken){
+      dadosLogin?.activeAccount && requestActivateAccount();
+      !dadosLogin?.activeAccount && fxLogin?.setChangeNewPassword(true);
+    }else{
+      alert("Erro no token");
+    }
   };
 
     useEffect(() => {
       confirmaToken && alert("Ativado Recuperar Senha por Token");
-      confirmaToken && requestActivateAccount();
-      // confirmaToken && props.setNewPassword(!props.newPassword);
+      if(confirmaToken){
+        dadosLogin?.activeAccount && requestActivateAccount();
+        !dadosLogin?.activeAccount && fxLogin?.setChangeNewPassword(true);
+      }
     }, [confirmaToken]);
     
     useEffect(() => {
-      state.result.request_ativar &&  props.setNewPassword(!props.newPassword);
-      state.result.request_ativar && setTemporizador(false);
+      if (state.result.request_ativar){
+        fxLogin?.setChangeNewPassword(true);
+        setTemporizador(false);
+      }     
     }, [state.result.request_ativar]);
 
     useEffect(() => {
-      state.error.request_ativar &&  alert("Erro no token");    //  falta ver oque vou fazer aqui - voltar para pagina inicial
-      state.error.request_ativar &&  setTemporizador(false);
+      if(state.error.request_ativar){
+        alert("Erro no token");
+        setTemporizador(false);
+      }
     }, [state.error.request_ativar]);
 
-    //falta fazer a funcão para reenviar código
     function handleResendCode() {
       alert("Reenviar Código");
-      //  aproveitar a mesma função que usei para enviar o token
-      //  criar um state para zerar os inputs
+      dadosLogin?.activeAccount && requestActivateAccount();
     };
  
   return (
     <>
           <LogoSvg/>
           <Spacing marginTop={"54px"}/>
-          <Typography tag={'p'} size={'20px'} margin={"0px"} fontWeight={"700"}>{props.activate? "Ativar minha conta":"Recuperar senha"}</Typography>
+          <Typography tag={'p'} size={'20px'} margin={"0px"} fontWeight={"700"}>{dadosLogin?.activeAccount? "Ativar minha conta":"Recuperar senha"}</Typography>
           <Spacing marginTop={"10px"}/>
           <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Insira abaixo o código enviado para o e-mail informado</Typography>
           <Spacing marginTop={"32px"}/>
