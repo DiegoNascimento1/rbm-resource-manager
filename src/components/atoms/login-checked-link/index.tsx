@@ -1,18 +1,24 @@
 import { StyledDivContainer, StyledDivSubContainer, StyledDivSubContainerEnd } from "./style";
 import Typography from "components/particles/typography-particles";
 import InputChecked from "components/particles/input-checked";
+import { useContext } from "react";
+import { contextLogin } from "contexts/login-context";
 
 type PropsLoginChecked = {
     textoLabel:string;
     textoLink:string;
-    RecoverPassaword: boolean;
-    setRecoverPassword: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function LoginChecked(props:PropsLoginChecked) {
+
+  const contextoLogin = useContext(contextLogin);
+
+  const dadosLogin = contextoLogin.funcoes?.dados;
+  const fxLogin = contextoLogin.funcoes?.setState;
+
   function handleRecover() {
     alert("esqueci a senha")
-    props.setRecoverPassword(!props.RecoverPassaword);
+    fxLogin?.setChangeRecoverPassword(true);
   }
   return (
     <StyledDivContainer>

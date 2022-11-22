@@ -3,20 +3,21 @@ import ButtonParticle from "components/particles/button-primary/button-primaty-i
 import Typography from "components/particles/typography-particles";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "components/particles/spacing-particles";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import IconAndText from "components/particles/icon-and-text";
 import { fxRegexValidateUppercase, fxRegexValidateSpecialCharacters, fxRegexValidateNumber} from "functions/regex-validate";
+import { contextLogin } from "contexts/login-context";
 
-type propsPasswordNew= {
-    finalizedPassword: boolean;
-    setFinalizedPassword: React.Dispatch<React.SetStateAction<boolean>>;
-    activate: true | false;
-}
 
-export default function PasswordNew(props:propsPasswordNew) {
+export default function PasswordNew() {
   const [confirmState, setConfirmState] = useState<boolean>(true);
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+  const contextoLogin = useContext(contextLogin);
+
+  const dadosLogin = contextoLogin.funcoes?.dados;
+  const fxLogin = contextoLogin.funcoes?.setState;
 
   function handleNewPassword() {
     if ((confirmPassword === newPassword) 
@@ -25,7 +26,7 @@ export default function PasswordNew(props:propsPasswordNew) {
       && ( fxRegexValidateNumber(newPassword    )    )
       && ( fxRegexValidateSpecialCharacters(newPassword))){
         alert("Senha Confirmada");
-        props.setFinalizedPassword(!props.finalizedPassword);
+        fxLogin?.setChangeFinalizedPassword(true);
     }else{
       alert("Senha Errada ou não preenche os requesitos necessários!");
     };
@@ -38,7 +39,7 @@ export default function PasswordNew(props:propsPasswordNew) {
     && ( fxRegexValidateNumber(newPassword))
     && ( fxRegexValidateSpecialCharacters(newPassword))){
       alert("Senha Confirmada");
-      props.setFinalizedPassword(!props.finalizedPassword);
+      fxLogin?.setChangeFinalizedPassword(true);
     }
   },[confirmPassword, newPassword]);
  
@@ -46,7 +47,7 @@ export default function PasswordNew(props:propsPasswordNew) {
     <>
         <LogoSvg/>
         <Spacing marginTop={"54px"}/>
-        <Typography tag={'p'} size={'20px'} margin={"0px"} fontWeight={"700"}>{props.activate? "Ativar minha conta":"Recuperar senha"}</Typography>
+        <Typography tag={'p'} size={'20px'} margin={"0px"} fontWeight={"700"}>{dadosLogin?.activeAccount? "Ativar minha conta":"Recuperar senha"}</Typography>
         <Spacing marginTop={"10px"}/>
         <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Redefina abaixo a senha da conta.</Typography>
         <Spacing marginTop={"22px"}/>
