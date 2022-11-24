@@ -8,41 +8,85 @@ import IconAndText from "components/particles/icon-and-text";
 import { fxRegexValidateUppercase, fxRegexValidateSpecialCharacters, fxRegexValidateNumber} from "functions/regex-validate";
 import { contextLogin } from "contexts/login-context";
 
+type ErroStatus = {
+  inputUm:"erro" | null ;
+  inputDois:"erro" | null ;
+};
+
+type ErroStatusType =  "erro" | null;
+
+type InputSelectNumber = 1 | 2 ;
 
 export default function PasswordNew() {
-  const [confirmState, setConfirmState] = useState<boolean>(true);
+  const [confirmState, setConfirmState] = useState<boolean>(true);  // estou pensando em tirar
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [erroStatus, setErroStatus] =useState<ErroStatus>({
+    inputUm:null,
+    inputDois:null,
+  });
 
   const contextoLogin = useContext(contextLogin);
 
   const dadosLogin = contextoLogin.funcoes?.dados;
   const fxLogin = contextoLogin.funcoes?.setState;
 
-  function handleNewPassword() {
-    if ((confirmPassword === newPassword) 
-      && ( newPassword.length >=8)
-      && ( fxRegexValidateUppercase(newPassword))
-      && ( fxRegexValidateNumber(newPassword    )    )
-      && ( fxRegexValidateSpecialCharacters(newPassword))){
-        alert("Senha Confirmada");
-        fxLogin?.setChangeFinalizedPassword(true);
-    }else{
-      alert("Senha Errada ou não preenche os requesitos necessários!");
+  const fxErrorInput = (error: ErroStatusType, inputSelect: InputSelectNumber)=>{
+    switch(inputSelect) {
+      case 1:
+        setErroStatus({...erroStatus, inputUm: error});
+        break;
+      case 2:
+        setErroStatus({...erroStatus, inputDois: error});
+        break;
+      default:
+        setErroStatus({inputUm: null, inputDois: null});
     };
+ };
+
+  const validatedPassword = ( newPassword.length >=8)
+          && ( fxRegexValidateUppercase(newPassword))
+          && ( fxRegexValidateNumber(newPassword))
+          && ( fxRegexValidateSpecialCharacters(newPassword))
+    ;
+  
+  const fxErroValidarPassword = ()=>{
+    if (!validatedPassword) { 
+      setNewPassword("");
+      setConfirmPassword("");
+      fxErrorInput("erro", 1);
+      alert("Senha não preenche os requesitos necessários!");
+    }
+  };
+
+  const fxErroConfirmarPassword = ()=>{
+      fxErrorInput(null, 1);
+      fxErrorInput("erro", 2);
+      alert("Senha diferente da confirmação!");
+  };
+
+  const fxExecutaNewPassword = () =>{
+    fxErrorInput(null, 1);
+    fxErrorInput(null, 2);
+    alert("Senha Confirmada");
+    fxLogin?.setChangeFinalizedPassword(true);
+  };
+
+  function handleNewPassword() {
+    fxErroValidarPassword();
+    validatedPassword && !(confirmPassword === newPassword) && fxErroConfirmarPassword();
+    validatedPassword && (confirmPassword === newPassword) && fxExecutaNewPassword();
   };
 
   useEffect(()=>{
-    if ((confirmPassword === newPassword) 
-    && ( newPassword.length >=8)
-    && ( fxRegexValidateUppercase(newPassword))
-    && ( fxRegexValidateNumber(newPassword))
-    && ( fxRegexValidateSpecialCharacters(newPassword))){
-      alert("Senha Confirmada");
-      fxLogin?.setChangeFinalizedPassword(true);
-    }
-  },[confirmPassword, newPassword]);
- 
+     newPassword.length>1 && fxErrorInput(null,1);
+     newPassword.length === 0 && fxErrorInput(null,2);
+  },[newPassword]);
+  
+  useEffect(()=>{
+    confirmPassword.length>1 && fxErrorInput(null,2);
+ },[confirmPassword]);
+
   return (
     <>
         <LogoSvg/>
@@ -93,9 +137,9 @@ export default function PasswordNew() {
             margimTexto={"0px"} 
             fontWeightTexto={"400"} 
             writtenTexto={`Pelo menos uma caractere especial (Ex:!@#$%"&*)`}></IconAndText>}
-        <InputContainer setInput={setNewPassword} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true} elementFocus={true}/>
+        <InputContainer setInput={setNewPassword} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true} elementFocus={true} statusError={erroStatus.inputUm} value={newPassword}/>
         <Spacing marginTop={"-20px"}/>
-        <InputContainer setInput={setConfirmPassword} placeholder={"Digite a sua senha"} labelName={"Confirma senha"} password={true}/>
+        <InputContainer setInput={setConfirmPassword} placeholder={"Digite a sua senha"} labelName={"Confirma senha"} password={true} statusError={erroStatus.inputDois} value={confirmPassword}/>
         <ButtonParticle light text={'CONFIRMAR'} onClick={()=>handleNewPassword()}/>
         <Spacing marginTop={"32px"}/>
     </>

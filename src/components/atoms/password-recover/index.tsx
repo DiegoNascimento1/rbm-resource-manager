@@ -17,6 +17,7 @@ export default function PasswordRecover() {
   const [email, setEmail] = useState("");
   const [state, request] = useRequest();
   const [temporizador, setTemporizador] = useState<boolean>(false);
+  const [erroStatus, setErroStatus] =useState<"erro" | null >(null);
   
   const contextoLogin = useContext(contextLogin);
 
@@ -37,6 +38,7 @@ export default function PasswordRecover() {
     if(state.result.activate){
       fxLogin?.setChangeRecoverToken(true);
       setTemporizador(false);
+      setErroStatus(null);
     }
 
   }, [state.result.activate]);
@@ -48,23 +50,39 @@ export default function PasswordRecover() {
       setEmail("");
       fxLogin?.setChangeEmail("");
       setTemporizador(false);
+      setErroStatus("erro");
     }
 
   }, [state.error.activate]);
 
   useEffect(() => {
     // loginContext.dadosData?.fx.fxTrocarNome('trocado por login Contexto função trocarNome - ** por objeto criado')
-  },[]);
+    email.length > 1 &&  setErroStatus(null);
+  },[email]);
+
+  const fxErroValidarEmail = (validatedEmail: boolean)=>{
+    if(!validatedEmail){
+      alert("Digite um email válido");
+      setEmail("");
+      setErroStatus("erro");
+    };
+  };
+
+  const fxExecutaRecorverPassword = (validatedEmail: boolean)=>{
+    if(validatedEmail){
+      setErroStatus(null);
+      fxLogin?.setChangeEmail(email);
+      dadosLogin?.activeAccount && requestActivate();  //  ativar está true e validou o email => executa a função
+      !dadosLogin?.activeAccount && alert("Falta fazer a conexção");
+    //  por não está implantada a conecaode não sei a senha, neste caso confirmamos o emaile e passamos para token
+      !dadosLogin?.activeAccount && fxLogin?.setChangeRecoverToken(true);
+    };
+  };
 
   function handleRecoverPassword() {
     const validatedEmail = fxRegexValidateEmail(email);
-    !validatedEmail && alert("Digite um email válido");
-    !validatedEmail && setEmail("");
-    validatedEmail && fxLogin?.setChangeEmail(email);
-     dadosLogin?.activeAccount && validatedEmail && requestActivate();  //  ativar está true e validou o email => executa a função
-    !dadosLogin?.activeAccount && validatedEmail && alert("Falta fazer a conexção");
-    //  por não está implantada a conecaode não sei a senha, neste caso confirmamos o emaile e passamos para token
-    !dadosLogin?.activeAccount && validatedEmail && fxLogin?.setChangeRecoverToken(true);
+    fxErroValidarEmail(validatedEmail);
+    fxExecutaRecorverPassword(validatedEmail);
   };
   
   return (
@@ -77,7 +95,7 @@ export default function PasswordRecover() {
         <Spacing marginTop={"32px"}/>
         {temporizador && <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"600"}>Aguarde....</Typography>}
         {temporizador && <Spacing marginTop={"32px"}/>}
-        <InputContainer setInput={setEmail} placeholder={"email@rbmweb.com.br"} labelName={"E-mail"} password={false} elementFocus={true} value={email}/>
+        <InputContainer setInput={setEmail} placeholder={"email@rbmweb.com.br"} labelName={"E-mail"} password={false} elementFocus={true} value={email} statusError={erroStatus}/>
         <Spacing marginTop={"24px"}/>
         <ButtonParticle light text={'AVANÇAR'} onClick={()=>handleRecoverPassword()}/>
         <Spacing marginTop={"32px"}/>

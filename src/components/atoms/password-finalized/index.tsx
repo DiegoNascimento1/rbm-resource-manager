@@ -14,14 +14,23 @@ export default function PasswordFinalized(){
 
     const dadosLogin = contextoLogin.funcoes?.dados;
     const fxLogin = contextoLogin.funcoes?.setState;
-    
-    function handleLogin(){
-        alert("Fazer Login");
+
+    const resetLogin = ()=>{
         fxLogin?.setChangeFinalizedPassword(false);
         fxLogin?.setChangeActiveAccount(false);
         fxLogin?.setChangeNewPassword(false);
         fxLogin?.setChangeRecoverToken(false);
         fxLogin?.setChangeRecoverPassword(false);
+    };
+    
+    function handleLogin(){
+        alert("Fazer Login");
+        resetLogin();
+        // fxLogin?.setChangeFinalizedPassword(false);
+        // fxLogin?.setChangeActiveAccount(false);
+        // fxLogin?.setChangeNewPassword(false);
+        // fxLogin?.setChangeRecoverToken(false);
+        // fxLogin?.setChangeRecoverPassword(false);
     }
 
     return (
