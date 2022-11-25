@@ -4,7 +4,7 @@ import Typography from "components/particles/typography-particles";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "components/particles/spacing-particles";
 import LoginChecked from "components/atoms/login-checked-link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useAuth } from "contexts/auth-context";
 import { fxRegexValidateUppercase, fxRegexValidateSpecialCharacters, fxRegexValidateNumber, fxRegexValidateEmail} from "functions/regex-validate";
 import { contextLogin } from "contexts/login-context";
@@ -92,12 +92,12 @@ const fxExecutaRecorverPassword = (validatedLogin: boolean, validatedPassword: b
   },[]);
 
   useEffect(()=>{
-    loginInput.length>1 && fxErrorInput(null,1);
-    loginInput.length === 0 && fxErrorInput(null,2);
+    erroStatus.inputUm === "erro" && loginInput.length>1 && fxErrorInput(null,1);
+    erroStatus.inputDois === "erro" && loginInput.length === 0 && fxErrorInput(null,2);
  },[loginInput]);
  
  useEffect(()=>{
-   senhaInput.length>1 && fxErrorInput(null,2);
+  erroStatus.inputDois === "erro" && senhaInput.length>1 && fxErrorInput(null,2);
 },[senhaInput]);
 
   return (
