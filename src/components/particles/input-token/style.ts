@@ -1,8 +1,13 @@
 import { THEME } from "contants";
 import styled from "styled-components";
 
-export const StyledInputPersonalized = styled.input`
- border: 1px solid #CED4DA;
+type StyledInputPersonalizedType = {
+  statusError?: "erro" | null;
+}
+
+export const StyledInputPersonalized = styled.input<StyledInputPersonalizedType>`
+ /* border: 1px solid #CED4DA; */
+ border: 1px solid ${(props) => props.statusError === "erro" ? "red" : "#CED4DA"};
  border-radius: 8px;
  width: 54.84px;
  height: 54px;
@@ -13,8 +18,15 @@ export const StyledInputPersonalized = styled.input`
  box-sizing: border-box;
  
  &:hover{
+  /* tirei mas vou deixar aqui ainda */
     /* cursor: pointer; */
-    border: 2px solid ${THEME.light.colors.primary3};
+    /* border: 2px solid ${THEME.light.colors.primary3}; */
+  }
+
+  &:focus{
+    outline: none;
+    background: #FFFFFF;
+    border: 1px solid ${(props) => props.statusError === "erro" ? "red" : THEME.light.colors.primary3};
   }
 
   ::placeholder{

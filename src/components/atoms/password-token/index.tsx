@@ -10,12 +10,15 @@ import useRequest from "hooks/useResquest";
 import { requestAtivar } from "services/api/base";
 import { contextLogin } from "contexts/login-context";
 
+type StatusErrorType = "erro" | null;
+
 export default function PasswordToken() {
 
   const [confirmaToken, setConfirmaToken]= useState<boolean>(false);
   const [state, request] = useRequest();
   const [codigoToken, setCodigoToken] = useState<string>("");
   const [temporizador, setTemporizador] = useState<boolean>(false);
+  const [statusError, setStatusError] = useState<StatusErrorType>(null);
 
   const contextoLogin = useContext(contextLogin);
 
@@ -36,6 +39,7 @@ export default function PasswordToken() {
       !dadosLogin?.activeAccount && fxLogin?.setChangeNewPassword(true);
     }else{
       alert("Erro no token");
+      setStatusError("erro");
     }
   };
 
@@ -80,7 +84,7 @@ export default function PasswordToken() {
             <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"500"} >Código</Typography>
           </StyledDivContainer>
           <Spacing marginTop={"4px"}/>
-          <InputToken confirmToken={setConfirmaToken} setCodeToken={setCodigoToken}/>
+          <InputToken confirmToken={setConfirmaToken} setCodeToken={setCodigoToken} erro={statusError}/>
           <Spacing marginTop={"32px"}/>
           <div onClick={()=>handleResendCode()}>
             <Typography tag={'p'} size={'12px'} margin={"0px"} fontWeight={"500"} decoration="underline" cursorHover="pointer" >Reenviar código</Typography>
