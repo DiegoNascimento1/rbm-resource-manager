@@ -18,6 +18,8 @@ type ErroStatusType =  "erro" | null;
 
 type InputSelectNumber = 1 | 2 ;
 
+type RefType = HTMLInputElement | null;
+
 export default function PasswordMaster() {
 
   const[loginInput,setLogin] = useState("");
@@ -29,6 +31,9 @@ export default function PasswordMaster() {
   });
 
   const contextoLogin = useContext(contextLogin);
+
+  const elementEmail = useRef<RefType>(null);
+  const elementPassword = useRef<RefType>(null);
 
   const fxLogin = contextoLogin.funcoes?.setState;
 
@@ -89,6 +94,7 @@ const fxExecutaRecorverPassword = (validatedLogin: boolean, validatedPassword: b
 
   useEffect(()=>{
     // loginContext.dadosData?.fx.fxTrocarNome('Trocado por objeto contruido');
+    elementEmail.current?.focus();
   },[]);
 
   useEffect(()=>{
@@ -108,8 +114,8 @@ const fxExecutaRecorverPassword = (validatedLogin: boolean, validatedPassword: b
       <Spacing marginTop={"10px"}/>
       <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Acesse sua conta abaixo =)</Typography>
       <Spacing marginTop={"32px"}/>
-      <InputContainer setInput={setLogin} placeholder={"email@rbmweb.com.br"} labelName={"E-mail"} password={false} elementFocus={true} statusError={erroStatus.inputUm} value={loginInput}/>
-      <InputContainer setInput={setSenha} placeholder={"Digite sua senha"} labelName={"Senha"} password={true} statusError={erroStatus.inputDois} value={senhaInput}/>
+      <InputContainer ref={elementEmail} setInput={setLogin} placeholder={"email@rbmweb.com.br"} labelName={"E-mail"} password={false} statusError={erroStatus.inputUm} value={loginInput}/>
+      <InputContainer ref={elementPassword} setInput={setSenha} placeholder={"Digite sua senha"} labelName={"Senha"} password={true} statusError={erroStatus.inputDois} value={senhaInput}/>
       <LoginChecked textoLabel={"Salvar login"} textoLink={"Esqueci a senha"} />
       <ButtonParticle light text={'ENTRAR'} onClick={()=>handleLogin()}/>
       <Spacing marginTop={"32px"}/>

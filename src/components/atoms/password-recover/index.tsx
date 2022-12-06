@@ -3,13 +3,14 @@ import ButtonParticle from "components/particles/button-primary/button-primaty-i
 import Typography from "components/particles/typography-particles";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "components/particles/spacing-particles";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { fxRegexValidateEmail } from "functions/regex-validate";
 import useRequest from "hooks/useResquest";
 import { requestPedirAtivacao } from "services/api/base";
 import { RequestPedirAtivacao } from "services/api/base/types";
 import { contextLogin } from "contexts/login-context";
 
+type RefType = HTMLInputElement | null;
 
 export default function PasswordRecover() {
 
@@ -20,6 +21,8 @@ export default function PasswordRecover() {
   const [erroStatus, setErroStatus] =useState<"erro" | null >(null);
   
   const contextoLogin = useContext(contextLogin);
+
+  const elementEmailRecorver = useRef<RefType>(null);
 
   const dadosLogin = contextoLogin.funcoes?.dados;
   const fxLogin = contextoLogin.funcoes?.setState;
@@ -60,6 +63,10 @@ export default function PasswordRecover() {
     email.length > 1 &&  setErroStatus(null);
   },[email]);
 
+  useEffect(()=>{
+    elementEmailRecorver.current?.focus();
+  },[])
+
   const fxErroValidarEmail = (validatedEmail: boolean)=>{
     if(!validatedEmail){
       alert("Digite um email válido");
@@ -95,7 +102,7 @@ export default function PasswordRecover() {
         <Spacing marginTop={"32px"}/>
         {temporizador && <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"600"}>Aguarde....</Typography>}
         {temporizador && <Spacing marginTop={"32px"}/>}
-        <InputContainer setInput={setEmail} placeholder={"email@rbmweb.com.br"} labelName={"E-mail"} password={false} elementFocus={true} value={email} statusError={erroStatus}/>
+        <InputContainer ref={elementEmailRecorver} setInput={setEmail} placeholder={"email@rbmweb.com.br"} labelName={"E-mail"} password={false} value={email} statusError={erroStatus}/>
         <Spacing marginTop={"24px"}/>
         <ButtonParticle light text={'AVANÇAR'} onClick={()=>handleRecoverPassword()}/>
         <Spacing marginTop={"32px"}/>
