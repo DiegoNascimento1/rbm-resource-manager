@@ -3,7 +3,7 @@ import ButtonParticle from "components/particles/button-primary/button-primaty-i
 import Typography from "components/particles/typography-particles";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "components/particles/spacing-particles";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import IconAndText from "components/particles/icon-and-text";
 import { fxRegexValidateUppercase, fxRegexValidateSpecialCharacters, fxRegexValidateNumber} from "functions/regex-validate";
 import { contextLogin } from "contexts/login-context";
@@ -17,6 +17,8 @@ type ErroStatusType =  "erro" | null;
 
 type InputSelectNumber = 1 | 2 ;
 
+type RefType = HTMLInputElement | null;
+
 export default function PasswordNew() {
   const [confirmState, setConfirmState] = useState<boolean>(true);  // estou pensando em tirar
   const [newPassword, setNewPassword] = useState<string>("");
@@ -27,6 +29,9 @@ export default function PasswordNew() {
   });
 
   const contextoLogin = useContext(contextLogin);
+
+  const elementNewPassword = useRef<RefType>(null);
+  const elementConfirmPassword = useRef<RefType>(null);
 
   const dadosLogin = contextoLogin.funcoes?.dados;
   const fxLogin = contextoLogin.funcoes?.setState;
@@ -87,6 +92,10 @@ export default function PasswordNew() {
     confirmPassword.length>1 && fxErrorInput(null,2);
  },[confirmPassword]);
 
+ useEffect (()=>{
+  elementNewPassword.current?.focus();
+ },[])
+
   return (
     <>
         <LogoSvg/>
@@ -137,9 +146,9 @@ export default function PasswordNew() {
             margimTexto={"0px"} 
             fontWeightTexto={"400"} 
             writtenTexto={`Pelo menos uma caractere especial (Ex:!@#$%"&*)`}></IconAndText>}
-        <InputContainer setInput={setNewPassword} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true} elementFocus={true} statusError={erroStatus.inputUm} value={newPassword}/>
+        <InputContainer ref={elementNewPassword} setInput={setNewPassword} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true} statusError={erroStatus.inputUm} value={newPassword}/>
         <Spacing marginTop={"-20px"}/>
-        <InputContainer setInput={setConfirmPassword} placeholder={"Digite a sua senha"} labelName={"Confirma senha"} password={true} statusError={erroStatus.inputDois} value={confirmPassword}/>
+        <InputContainer ref={elementConfirmPassword} setInput={setConfirmPassword} placeholder={"Digite a sua senha"} labelName={"Confirma senha"} password={true} statusError={erroStatus.inputDois} value={confirmPassword}/>
         <ButtonParticle light text={'CONFIRMAR'} onClick={()=>handleNewPassword()}/>
         <Spacing marginTop={"32px"}/>
     </>
