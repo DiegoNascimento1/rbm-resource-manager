@@ -3,7 +3,7 @@
 //  ***********   funcionou sem useImpertiveHandle  ***********
 
 import { forwardRef, useState } from "react";
-import { InputPersolanizada } from "./style";
+import { StyledInputPersolanizada } from "./style";
 
 type InputPersonalizadoProps = {
     type?: "text";
@@ -24,7 +24,7 @@ const InputPersonalizado =  forwardRef((props: InputPersonalizadoProps, ref: any
 
     return(
     <>
-        <InputPersolanizada ref={ref} type={props.type} placeholder={props.placeholder} onChange={()=>mesagemDentroComponente()} ></InputPersolanizada>
+        <StyledInputPersolanizada ref={ref} type={props.type} placeholder={props.placeholder} onChange={()=>mesagemDentroComponente()} ></StyledInputPersolanizada>
         <h1>{count}</h1>
     </>
     )

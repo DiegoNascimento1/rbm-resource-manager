@@ -21,7 +21,7 @@ export const LabelInput = styled.label`
     /* padding-left: 20px; */
 `;
 
-export const InputPersolanizada = styled.input`
+export const StyledInputPersolanizada = styled.input`
     border-radius: 10px;
     margin-right: 20px;
     padding-left: 20px;

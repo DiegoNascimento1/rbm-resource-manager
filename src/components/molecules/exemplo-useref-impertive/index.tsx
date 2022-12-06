@@ -3,7 +3,9 @@
 //  ********** sem o useImperativeHandle
 
 
-import {  useRef, useState } from "react";
+import InputContainer from "components/atoms/input-container";
+import InputContainerForwardRef from "components/atoms/input-container-forwardref";
+import {  useEffect, useRef, useState } from "react";
 import InputPersonalizado from "./Input_personalizado";
 import { ButoonPersonalisado, DivContainer,  LabelInput,  TextoH2 } from "./style";
 
@@ -11,8 +13,10 @@ export default function EemploUseRefImperative (){
 
     const elementInputUm = useRef<HTMLInputElement | null>(null);
     const elementInputDois = useRef<HTMLInputElement | null>(null);
+    const elementComponente = useRef<HTMLInputElement | null>(null);
     const [texto,setTexto] = useState<string>("");
     const [textoDois,setTextoDois] = useState<string>("");
+    const [textoComponente, setTextoComponente] = useState<string>("");
 
     function fxFocus(){elementInputUm.current?.focus()};
     function fxCopia(){setTexto(elementInputUm.current ? elementInputUm.current.value : "erroooo")};
@@ -23,6 +27,23 @@ export default function EemploUseRefImperative (){
     function fxCopiaDois(){setTextoDois(elementInputDois.current ? elementInputDois.current.value : "erroooo")};
     function fxResetValorDois(){if(elementInputDois.current) elementInputDois.current.value = ""};
     function fxResetStateDois(){setTextoDois("")};
+
+    const fxFocusComponente = () => {alert("Focus");
+                                    elementComponente.current?.focus();    
+                                };
+    const fxCopiaComponente = () => {alert("Copia");
+                                    setTextoComponente(elementComponente.current ? elementComponente.current.value : "erroooo");
+                                };
+    const fxResetValorComponente = () => {alert("Reset Valor")
+                                    if(elementComponente.current) elementComponente.current.value = ""
+                                };
+    const fxResetStateComponente = () => {alert("Reset State");
+                                    setTextoComponente("");
+                                };
+
+    useEffect(()=>{
+        elementComponente.current?.focus();
+    },[])
 
     return (
         <DivContainer>          
@@ -42,8 +63,18 @@ export default function EemploUseRefImperative (){
             <ButoonPersonalisado onClick={()=>fxCopiaDois()}>Copia</ButoonPersonalisado>   
             <ButoonPersonalisado onClick={()=>fxResetValorDois()}>Reset Valor</ButoonPersonalisado>   
             <ButoonPersonalisado onClick={()=>fxResetStateDois()}>Reset State</ButoonPersonalisado>  
-            
             <TextoH2>{textoDois}</TextoH2>   
+
+            <hr/>
+            <TextoH2>Componente utilizado no app</TextoH2>
+            <LabelInput>Componente InputContainer</LabelInput>
+            {/* <InputContainer setInput={setTextoComponente} placeholder={"Digite o valor"} labelName={"Valor Componente"} elementFocus={true}/> */}
+            <InputContainerForwardRef setInput={setTextoComponente} placeholder={"Digite o valor"} labelName={"Valor Componente"} elementFocus={true} ref={elementComponente} value={textoComponente} />
+            <ButoonPersonalisado onClick={()=>fxFocusComponente()}>Focus</ButoonPersonalisado>
+            <ButoonPersonalisado onClick={()=>fxCopiaComponente()}>Copia</ButoonPersonalisado>   
+            <ButoonPersonalisado onClick={()=>fxResetValorComponente()}>Reset Valor</ButoonPersonalisado>   
+            <ButoonPersonalisado onClick={()=>fxResetStateComponente()}>Reset State</ButoonPersonalisado> 
+            <TextoH2>{textoComponente}</TextoH2>  
         </DivContainer>
     )
 };
