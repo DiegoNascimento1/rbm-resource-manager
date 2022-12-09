@@ -6,9 +6,10 @@ import Spacing from "components/particles/spacing-particles";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { fxRegexValidateEmail } from "functions/regex-validate";
 import useRequest from "hooks/useResquest";
-import { requestPedirAtivacao } from "services/api/base";
-import { RequestPedirAtivacao } from "services/api/base/types";
+// import { requestPedirAtivacao } from "services/api/base";
+// import { RequestPedirAtivacao } from "services/api/base/types";
 import { contextLogin } from "contexts/login-context";
+import { requestPedirAtivacao, RequestPedirAtivacaoType } from "services/api/request-pedir-ativacao";
 
 type RefType = HTMLInputElement | null;
 
@@ -16,7 +17,7 @@ export default function PasswordRecover() {
 
   // const[loginInput,setLogin] = useState("");
   const [email, setEmail] = useState("");
-  const [state, request] = useRequest();
+  // const [state, request] = useRequest();
   const [temporizador, setTemporizador] = useState<boolean>(false);
   const [erroStatus, setErroStatus] =useState<"erro" | null >(null);
   
@@ -27,36 +28,35 @@ export default function PasswordRecover() {
   const dadosLogin = contextoLogin.funcoes?.dados;
   const fxLogin = contextoLogin.funcoes?.setState;
 
-  async function requestActivate() {
-    setTemporizador(true);
-    try {
-      await request(requestPedirAtivacao, "activate", { login: email } as RequestPedirAtivacao);
-      // depois de conectado vai para o token
-      fxLogin?.setChangeRecoverToken(true);
-    } catch {}
+  const fxResponsePositive = () => {
+    setTemporizador(false);
+    setErroStatus(null);
+    fxLogin?.setChangeRecoverToken(true);
   };
 
-  useEffect(() => {
+  const fxResponseError = () => {
+    alert("Email não encontrado");  // estou deixando na mesma tela
+    setEmail("");
+    fxLogin?.setChangeEmail("");
+    setTemporizador(false);
+    setErroStatus("erro");
+  };
 
-    if(state.result.activate){
-      fxLogin?.setChangeRecoverToken(true);
-      setTemporizador(false);
-      setErroStatus(null);
+  const searchPedirAtivacao:RequestPedirAtivacaoType = { 
+    login: email
+  };
+
+  async function fxRequestPedirAtivacao() {
+    setTemporizador(true);
+    try {
+        console.log("entrou no pedir ativação")         //  so para verificar
+        await requestPedirAtivacao( searchPedirAtivacao );
+        console.log("saiu no pedir ativação");          //  so para verificar
+        fxResponsePositive();
+    } catch {
+        fxResponseError();
     }
-
-  }, [state.result.activate]);
-
-  useEffect(() => {
-
-    if (state.error.activate){
-      alert("Email não encontrado");  // estou deixando na mesma tela
-      setEmail("");
-      fxLogin?.setChangeEmail("");
-      setTemporizador(false);
-      setErroStatus("erro");
-    }
-
-  }, [state.error.activate]);
+  };
 
   useEffect(() => {
     // loginContext.dadosData?.fx.fxTrocarNome('trocado por login Contexto função trocarNome - ** por objeto criado')
@@ -79,10 +79,7 @@ export default function PasswordRecover() {
     if(validatedEmail){
       setErroStatus(null);
       fxLogin?.setChangeEmail(email);
-      dadosLogin?.activeAccount && requestActivate();  //  ativar está true e validou o email => executa a função
-      !dadosLogin?.activeAccount && alert("Falta fazer a conexção");
-    //  por não está implantada a conecaode não sei a senha, neste caso confirmamos o emaile e passamos para token
-      !dadosLogin?.activeAccount && fxLogin?.setChangeRecoverToken(true);
+      fxRequestPedirAtivacao();
     };
   };
 
