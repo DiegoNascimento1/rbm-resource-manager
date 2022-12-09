@@ -2,12 +2,12 @@ import { THEME } from "contants";
 import styled from "styled-components";
 
 type StyledInputPersonalizedType = {
-  statusError?: "erro" | null;
+  statusError?: boolean;
 }
 
 export const StyledInputPersonalized = styled.input<StyledInputPersonalizedType>`
  /* border: 1px solid #CED4DA; */
- border: 1px solid ${(props) => props.statusError === "erro" ? "red" : "#CED4DA"};
+ border: 1px solid ${(props) => props.statusError ? "red" : "#CED4DA"};
  border-radius: 8px;
  width: 54.84px;
  height: 54px;
@@ -26,7 +26,7 @@ export const StyledInputPersonalized = styled.input<StyledInputPersonalizedType>
   &:focus{
     outline: none;
     background: #FFFFFF;
-    border: 1px solid ${(props) => props.statusError === "erro" ? "red" : THEME.light.colors.primary3};
+    border: 1px solid ${(props) => props.statusError ? "red" : THEME.light.colors.primary3};
   }
 
   ::placeholder{

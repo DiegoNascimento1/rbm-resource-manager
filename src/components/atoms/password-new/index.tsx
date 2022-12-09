@@ -7,6 +7,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import IconAndText from "components/particles/icon-and-text";
 import { fxRegexValidateUppercase, fxRegexValidateSpecialCharacters, fxRegexValidateNumber} from "functions/regex-validate";
 import { contextLogin } from "contexts/login-context";
+import { RequestCriarSenhaType, requestCriarSenha } from "services/api/request-criar-senha";
 
 type ErroStatus = {
   inputUm:"erro" | null ;
@@ -27,6 +28,7 @@ export default function PasswordNew() {
     inputUm:null,
     inputDois:null,
   });
+  const [temporizador, setTemporizador] = useState<boolean>(false);
 
   const contextoLogin = useContext(contextLogin);
 
@@ -74,7 +76,37 @@ export default function PasswordNew() {
     fxErrorInput(null, 1);
     fxErrorInput(null, 2);
     alert("Senha Confirmada");
+    //  confirmado so clritérios e pode enviar a nova senha
+    fxRequestCriarSenha();
+  };
+
+  const fxResponsePositive = () => {
+    setTemporizador(false);
+    setErroStatus({ ...erroStatus, inputUm: null, inputDois: null});
     fxLogin?.setChangeFinalizedPassword(true);
+  };
+
+  const fxResponseError = () => {
+    alert("Erro no envio da nova senha");  
+    setTemporizador(false);
+    setErroStatus({ ...erroStatus, inputUm: "erro", inputDois: "erro"});
+  };
+
+  const creatPassaword: RequestCriarSenhaType = {
+    login: dadosLogin!.email,
+    senha: newPassword,
+  };
+
+  async function fxRequestCriarSenha() {
+    setTemporizador(true);
+    try {
+        console.log("entrou no pedir ativação")         //  so para verificar
+        await requestCriarSenha( creatPassaword );
+        console.log("saiu no pedir ativação");          //  so para verificar
+        fxResponsePositive();
+    } catch {
+        fxResponseError();
+    }
   };
 
   function handleNewPassword() {
@@ -147,6 +179,9 @@ export default function PasswordNew() {
             fontWeightTexto={"400"} 
             writtenTexto={`Pelo menos uma caractere especial (Ex:!@#$%"&*)`}></IconAndText>}
         <InputContainer ref={elementNewPassword} setInput={setNewPassword} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true} statusError={erroStatus.inputUm} value={newPassword}/>
+        {temporizador && <Spacing marginTop={"10px"}/>}
+        {temporizador && <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"600"}>Aguarde....</Typography>}
+        {temporizador && <Spacing marginTop={"32px"}/>}
         <Spacing marginTop={"-20px"}/>
         <InputContainer ref={elementConfirmPassword} setInput={setConfirmPassword} placeholder={"Digite a sua senha"} labelName={"Confirma senha"} password={true} statusError={erroStatus.inputDois} value={confirmPassword}/>
         <ButtonParticle light text={'CONFIRMAR'} onClick={()=>handleNewPassword()}/>

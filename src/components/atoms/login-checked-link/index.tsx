@@ -17,7 +17,6 @@ export default function LoginChecked(props:PropsLoginChecked) {
   const fxLogin = contextoLogin.funcoes?.setState;
 
   function handleRecover() {
-    alert("esqueci a senha")
     fxLogin?.setChangeRecoverPassword(true);
   }
   return (

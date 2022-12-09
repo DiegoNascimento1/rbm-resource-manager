@@ -5,69 +5,102 @@ import Spacing from "../../particles/spacing-particles/index";
 import { StyledDivContainer } from "components/particles/input-token/style";
 import InputToken from "components/particles/input-token";
 import { useContext, useEffect, useState } from "react";
-import { RequestAtivarParams } from "services/api/base/types";
 import useRequest from "hooks/useResquest";
-import { requestAtivar } from "services/api/base";
 import { contextLogin } from "contexts/login-context";
-
-type StatusErrorType = "erro" | null;
+import { requestAtivarLogin, RequestAtivarType } from "services/api/request-ativar";
+import { requestPedirAtivacao, RequestPedirAtivacaoType } from "services/api/request-pedir-ativacao";
 
 export default function PasswordToken() {
 
   const [confirmaToken, setConfirmaToken]= useState<boolean>(false);
-  const [state, request] = useRequest();
+  // const [state, request] = useRequest();
   const [codigoToken, setCodigoToken] = useState<string>("");
   const [temporizador, setTemporizador] = useState<boolean>(false);
-  const [statusError, setStatusError] = useState<StatusErrorType>(null);
+  const [statusError, setStatusError] = useState<boolean>(false);
+  const [resetToken, setResetToken] = useState<boolean>(false);
 
   const contextoLogin = useContext(contextLogin);
 
   const dadosLogin = contextoLogin.funcoes?.dados;
   const fxLogin = contextoLogin.funcoes?.setState;
 
-  async function requestActivateAccount() {
+  const fxResponsePositive = () => {
+        console.log("dadosLogin Positive",dadosLogin);
+        fxLogin?.setChangeNewPassword(true);
+        setTemporizador(false);
+  };
+
+  const fxResponseError = () => {
+        alert("Erro no token");
+        setTemporizador(false);
+        setResetToken(true);
+  };
+
+  const searchAtivar = { 
+    login: dadosLogin?.email,
+    token: codigoToken,
+  } as RequestAtivarType;
+
+  async function fxRequestAtivar() {
     setTemporizador(true);
     try {
-      await request(requestAtivar, "request_ativar", { login: dadosLogin?.email, token: codigoToken } as RequestAtivarParams);
-      fxLogin?.setChangeNewPassword(true);
-    } catch {}
-  }
+        await requestAtivarLogin( searchAtivar );
+        fxResponsePositive();
+    } catch {
+        fxResponseError();
+    }
+  };
 
-   function handleRecoverPasswordToken() {    
+  const fxPedirAtivacaoResponsePositive = () => {
+    console.log("dadosLogin Positive",dadosLogin);
+    alert("Deu certo o reenvio");
+    setTemporizador(false);
+    setStatusError(false);
+};
+
+const fxPedirAtivacaoResponseError = () => {
+    alert("Erro no token");
+    setTemporizador(false);
+    setStatusError(true);
+};
+
+  const searchPedirAtivacao = { 
+        login: dadosLogin?.email,
+  } as RequestPedirAtivacaoType;
+
+  async function fxRequestPedirAtivacao() {
+    setTemporizador(true);
+    try {
+        await requestPedirAtivacao( searchPedirAtivacao );
+        fxPedirAtivacaoResponsePositive();
+    } catch {
+        fxPedirAtivacaoResponseError();
+    }
+  };
+
+   function handleRecoverPasswordToken() {  
+    alert(`Confimra token ${confirmaToken}`); 
     if(confirmaToken){
-      dadosLogin?.activeAccount && requestActivateAccount();
-      !dadosLogin?.activeAccount && fxLogin?.setChangeNewPassword(true);
+      alert("confirmado");
+      fxRequestAtivar();
     }else{
-      alert("Erro no token");
-      setStatusError("erro");
+      setStatusError(true);
     }
   };
 
     useEffect(() => {
-      confirmaToken && alert("Ativado Recuperar Senha por Token");
       if(confirmaToken){
-        dadosLogin?.activeAccount && requestActivateAccount();
-        !dadosLogin?.activeAccount && fxLogin?.setChangeNewPassword(true);
-      }
+        alert("Ativado Recuperar Senha por Token, mas falta enviar");
+      };
     }, [confirmaToken]);
-    
-    useEffect(() => {
-      if (state.result.request_ativar){
-        fxLogin?.setChangeNewPassword(true);
-        setTemporizador(false);
-      }     
-    }, [state.result.request_ativar]);
-
-    useEffect(() => {
-      if(state.error.request_ativar){
-        alert("Erro no token");
-        setTemporizador(false);
-      }
-    }, [state.error.request_ativar]);
 
     function handleResendCode() {
+      console.log(dadosLogin)
       alert("Reenviar Código");
-      dadosLogin?.activeAccount && requestActivateAccount();
+      setConfirmaToken(false);
+      setResetToken(true);
+      setStatusError(false)
+      fxRequestPedirAtivacao();
     };
  
   return (
@@ -84,7 +117,7 @@ export default function PasswordToken() {
             <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"500"} >Código</Typography>
           </StyledDivContainer>
           <Spacing marginTop={"4px"}/>
-          <InputToken confirmToken={setConfirmaToken} setCodeToken={setCodigoToken} erro={statusError}/>
+          <InputToken confirmToken={setConfirmaToken} setCodeToken={setCodigoToken} erro={statusError} setErro={setStatusError} reset={resetToken} setReset={setResetToken}/>
           <Spacing marginTop={"32px"}/>
           <div onClick={()=>handleResendCode()}>
             <Typography tag={'p'} size={'12px'} margin={"0px"} fontWeight={"500"} decoration="underline" cursorHover="pointer" >Reenviar código</Typography>
