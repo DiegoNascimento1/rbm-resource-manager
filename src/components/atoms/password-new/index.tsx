@@ -4,10 +4,11 @@ import Typography from "components/particles/typography-particles";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "components/particles/spacing-particles";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import IconAndText from "components/particles/icon-and-text";
 import { fxRegexValidateUppercase, fxRegexValidateSpecialCharacters, fxRegexValidateNumber} from "functions/regex-validate";
 import { contextLogin } from "contexts/login-context";
 import { RequestCriarSenhaType, requestCriarSenha } from "services/api/request-criar-senha";
+import IconAndTextNew from "components/particles/icon-and-text-new";
+import IconAndText from "components/particles/icon-and-text";
 
 type ErroStatus = {
   inputUm:"erro" | null ;
@@ -21,7 +22,7 @@ type InputSelectNumber = 1 | 2 ;
 type RefType = HTMLInputElement | null;
 
 export default function PasswordNew() {
-  const [confirmState, setConfirmState] = useState<boolean>(true);  // estou pensando em tirar
+
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [erroStatus, setErroStatus] =useState<ErroStatus>({
@@ -136,48 +137,49 @@ export default function PasswordNew() {
         <Spacing marginTop={"10px"}/>
         <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Redefina abaixo a senha da conta.</Typography>
         <Spacing marginTop={"22px"}/>
-        {confirmState && <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Por segurança, a senha deve seguir os critérios abaixo:</Typography>}
+        <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Por segurança, a senha deve seguir os critérios abaixo:</Typography>
         <Spacing marginTop={"12px"}/>
-        {confirmState && <IconAndText 
-            icon={true} 
-            texto={true} 
-            confirm={newPassword.length >=8 ? true : false}
-            sizeIcon={"10px"} 
-            margimComponents={"5px"} 
-            sizeTexto={"10px"}
-            margimTexto={"0px"} 
-            fontWeightTexto={"400"} 
-            writtenTexto={"Mínimo de 8 caracteres"}></IconAndText>}
-        {confirmState && <IconAndText 
-            icon={true} 
-            texto={true} 
-            confirm={fxRegexValidateUppercase(newPassword)}
-            sizeIcon={"10px"} 
-            margimComponents={"5px"} 
-            sizeTexto={"10px"}
-            margimTexto={"0px"} 
-            fontWeightTexto={"400"} 
-            writtenTexto={"Pelo menos uma letra maíscula"}></IconAndText>}
-        {confirmState && <IconAndText 
-            icon={true} 
-            texto={true} 
-            confirm={fxRegexValidateNumber(newPassword)}
-            sizeIcon={"10px"} 
-            margimComponents={"5px"} 
-            sizeTexto={"10px"}
-            margimTexto={"0px"} 
-            fontWeightTexto={"400"} 
-            writtenTexto={"Pelo menos um número"}></IconAndText>}
-        {confirmState && <IconAndText 
-            icon={true} 
-            texto={true} 
-            confirm={fxRegexValidateSpecialCharacters(newPassword)}
-            sizeIcon={"10px"} 
-            margimComponents={"5px"} 
-            sizeTexto={"10px"}
-            margimTexto={"0px"} 
-            fontWeightTexto={"400"} 
-            writtenTexto={`Pelo menos uma caractere especial (Ex:!@#$%"&*)`}></IconAndText>}
+        
+        <IconAndTextNew 
+            typeComponent="CONFIRM + ICON + TEXTO" 
+            stateConfirm={newPassword.length >=8 ? true : false} 
+            textWritten={`Mínimo de 8 caracteres`}
+            textSize={"10px"}
+            gapBetweenComponents={`5px`}
+            alignText={"Left"}
+            iconSize={`10px`}
+            fontWeightText={`400`}/>
+
+        <IconAndTextNew 
+            typeComponent="CONFIRM + ICON + TEXTO" 
+            stateConfirm={fxRegexValidateUppercase(newPassword)} 
+            textWritten={`Pelo menos uma letra maíscula`}
+            textSize={"10px"}
+            gapBetweenComponents={`5px`}
+            alignText={"Left"}
+            iconSize={`10px`}
+            fontWeightText={`400`}/>
+        
+        <IconAndTextNew 
+            typeComponent="CONFIRM + ICON + TEXTO" 
+            stateConfirm={fxRegexValidateNumber(newPassword)} 
+            textWritten={`Pelo menos um número`}
+            textSize={"10px"}
+            gapBetweenComponents={`5px`}
+            alignText={"Left"}
+            iconSize={`10px`}
+            fontWeightText={`400`}/>
+        
+        <IconAndTextNew 
+            typeComponent="CONFIRM + ICON + TEXTO" 
+            stateConfirm={fxRegexValidateSpecialCharacters(newPassword)} 
+            textWritten={`Pelo menos uma caractere especial (Ex:!@#$%"&*)`}
+            textSize={"10px"}
+            gapBetweenComponents={`5px`}
+            alignText={"Left"}
+            iconSize={`10px`}
+            fontWeightText={`400`}/>   
+
         <InputContainer ref={elementNewPassword} setInput={setNewPassword} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true} statusError={erroStatus.inputUm} value={newPassword}/>
         {temporizador && <Spacing marginTop={"10px"}/>}
         {temporizador && <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"600"}>Aguarde....</Typography>}
