@@ -5,11 +5,10 @@ import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "components/particles/spacing-particles";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { fxRegexValidateEmail } from "functions/regex-validate";
-import useRequest from "hooks/useResquest";
-// import { requestPedirAtivacao } from "services/api/base";
-// import { RequestPedirAtivacao } from "services/api/base/types";
 import { contextLogin } from "contexts/login-context";
 import { requestPedirAtivacao, RequestPedirAtivacaoType } from "services/api/request-pedir-ativacao";
+import IconAndTextNew from "components/particles/icon-and-text-new";
+import useRequest from "hooks/useResquest";
 
 type RefType = HTMLInputElement | null;
 
@@ -103,8 +102,16 @@ export default function PasswordRecover() {
         <Spacing marginTop={"24px"}/>
         <ButtonParticle light text={'AVANÇAR'} onClick={()=>handleRecoverPassword()}/>
         <Spacing marginTop={"32px"}/>
-        {dadosLogin?.activeAccount &&
-         <Typography tag={'p'} size={'10px'} margin={"0px"} fontWeight={"400"}>Caso ainda não tenha recebido seu e-mail entre em contato como RH.</Typography>}
+        {dadosLogin?.activeAccount && 
+          <IconAndTextNew 
+                  typeComponent="ICON + TEXTO" 
+                  textWritten="Caso ainda não tenha recebido seu e-mail entre em contato como RH."  
+                  textSize="10px" 
+                  iconSize="10px" 
+                  fontWeightText="400" 
+                  gapBetweenComponents={"5px"}/>
+        }
+        
     </>
   );
 };
