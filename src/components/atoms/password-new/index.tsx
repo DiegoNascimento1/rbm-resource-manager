@@ -7,7 +7,6 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { fxRegexValidateUppercase, fxRegexValidateSpecialCharacters, fxRegexValidateNumber} from "functions/regex-validate";
 import { contextLogin } from "contexts/login-context";
 import { RequestCriarSenhaType, requestCriarSenha } from "services/api/request-criar-senha";
-import IconAndTextNew from "components/particles/icon-and-text-new";
 import IconAndText from "components/particles/icon-and-text";
 
 type ErroStatus = {
@@ -140,45 +139,45 @@ export default function PasswordNew() {
         <Typography tag={'p'} size={'14px'} margin={"0px"} fontWeight={"400"}>Por segurança, a senha deve seguir os critérios abaixo:</Typography>
         <Spacing marginTop={"12px"}/>
         
-        <IconAndTextNew 
-            typeComponent="CONFIRM + ICON + TEXTO" 
-            stateConfirm={newPassword.length >=8 ? true : false} 
-            textWritten={`Mínimo de 8 caracteres`}
-            textSize={"10px"}
-            gapBetweenComponents={`5px`}
-            alignText={"Left"}
-            iconSize={`10px`}
-            fontWeightText={`400`}/>
-
-        <IconAndTextNew 
-            typeComponent="CONFIRM + ICON + TEXTO" 
-            stateConfirm={fxRegexValidateUppercase(newPassword)} 
-            textWritten={`Pelo menos uma letra maíscula`}
-            textSize={"10px"}
-            gapBetweenComponents={`5px`}
-            alignText={"Left"}
-            iconSize={`10px`}
-            fontWeightText={`400`}/>
+        <IconAndText 
+            chooseType="CONFIRM + ICON + TEXTO"
+            stateConfirm = {newPassword.length >=8 ? true : false}
+            textWritten="Mínimo de 8 caracteres"
+            textSize="10px"
+            iconSize="10px"
+            fontWeightText="400"
+            gapBetweenComponents="5px"
+            alignComponents="Left"/>
         
-        <IconAndTextNew 
-            typeComponent="CONFIRM + ICON + TEXTO" 
-            stateConfirm={fxRegexValidateNumber(newPassword)} 
-            textWritten={`Pelo menos um número`}
-            textSize={"10px"}
-            gapBetweenComponents={`5px`}
-            alignText={"Left"}
-            iconSize={`10px`}
-            fontWeightText={`400`}/>
+        <IconAndText 
+            chooseType="CONFIRM + ICON + TEXTO"
+            stateConfirm = {fxRegexValidateUppercase(newPassword)}
+            textWritten="Pelo menos uma letra maíscula"
+            textSize="10px"
+            iconSize="10px"
+            fontWeightText="400"
+            gapBetweenComponents="5px"
+            alignComponents="Left"/>
         
-        <IconAndTextNew 
-            typeComponent="CONFIRM + ICON + TEXTO" 
-            stateConfirm={fxRegexValidateSpecialCharacters(newPassword)} 
+        <IconAndText 
+            chooseType="CONFIRM + ICON + TEXTO"
+            stateConfirm = {fxRegexValidateNumber(newPassword)}
+            textWritten="Pelo menos um número"
+            textSize="10px"
+            iconSize="10px"
+            fontWeightText="400"
+            gapBetweenComponents="5px"
+            alignComponents="Left"/>
+        
+        <IconAndText 
+            chooseType="CONFIRM + ICON + TEXTO"
+            stateConfirm = {fxRegexValidateSpecialCharacters(newPassword)}
             textWritten={`Pelo menos uma caractere especial (Ex:!@#$%"&*)`}
-            textSize={"10px"}
-            gapBetweenComponents={`5px`}
-            alignText={"Left"}
-            iconSize={`10px`}
-            fontWeightText={`400`}/>   
+            textSize="10px"
+            iconSize="10px"
+            fontWeightText="400"
+            gapBetweenComponents="5px"
+            alignComponents="Left"/>   
 
         <InputContainer ref={elementNewPassword} setInput={setNewPassword} placeholder={"Digite a sua senha"} labelName={"Senha"} password={true} statusError={erroStatus.inputUm} value={newPassword}/>
         {temporizador && <Spacing marginTop={"10px"}/>}

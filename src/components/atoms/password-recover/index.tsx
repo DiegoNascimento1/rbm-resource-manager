@@ -7,8 +7,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { fxRegexValidateEmail } from "functions/regex-validate";
 import { contextLogin } from "contexts/login-context";
 import { requestPedirAtivacao, RequestPedirAtivacaoType } from "services/api/request-pedir-ativacao";
-import IconAndTextNew from "components/particles/icon-and-text-new";
 import useRequest from "hooks/useResquest";
+import IconAndText from "components/particles/icon-and-text";
 
 type RefType = HTMLInputElement | null;
 
@@ -103,13 +103,15 @@ export default function PasswordRecover() {
         <ButtonParticle light text={'AVANÇAR'} onClick={()=>handleRecoverPassword()}/>
         <Spacing marginTop={"32px"}/>
         {dadosLogin?.activeAccount && 
-          <IconAndTextNew 
-                  typeComponent="ICON + TEXTO" 
-                  textWritten="Caso ainda não tenha recebido seu e-mail entre em contato como RH."  
-                  textSize="10px" 
-                  iconSize="10px" 
-                  fontWeightText="400" 
-                  gapBetweenComponents={"5px"}/>
+          <IconAndText 
+            chooseType="ICON + TEXTO"
+            textWritten="Caso ainda não tenha recebido seu e-mail entre em contato como RH."
+            textSize="10px"
+            iconSize="10px"
+            iconName="SvgInfo"
+            fontWeightText="400"
+            gapBetweenComponents="5px"
+            alignComponents="Center"/>
         }
         
     </>
