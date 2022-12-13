@@ -20,7 +20,7 @@ export default function LoginContainer() {
 
   return (
       <StyleLoginContainer>   
-        <PasswordNew/>
+        
         {((!dadosLogin?.recoverPassword) && (!dadosLogin?.recoverToken) && (!dadosLogin?.newPassword) && (!dadosLogin?.finalizedPassword))  && <PasswordMaster/>}
         {((dadosLogin?.recoverPassword) && (!dadosLogin?.recoverToken) && (!dadosLogin?.newPassword) && (!dadosLogin?.finalizedPassword)) && <PassawordRecover />}
         {((dadosLogin?.recoverPassword) && (dadosLogin?.recoverToken) && (!dadosLogin?.newPassword) && (!dadosLogin?.finalizedPassword)) && <PassawordToken />}
