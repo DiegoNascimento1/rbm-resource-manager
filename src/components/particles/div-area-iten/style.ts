@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-type areaTitleType = "Header" | "Menu" | "Aside" | "Footer" | "Usuario" | "Defaut";
+type areaTitleType = "Header" | "Menu" | "Aside" | "Footer" | "Usuario" | "Datas" | "Calendario" | "Listagem" | "MeusAgendamento" | "Defaut";
 type alignTextType = "left" | "center" | "right" ;
 type displayType = "grid" | "block" ;
 type typeBorderType = "solid" ;

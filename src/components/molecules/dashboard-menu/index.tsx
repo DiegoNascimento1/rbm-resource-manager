@@ -1,5 +1,5 @@
 import { CircleAndText } from "components/particles/circle-and-text";
-import DivGridItenArea from "components/particles/div-grid-item-area";
+import DivAreaIten from "components/particles/div-area-iten";
 import IconAndText from "components/particles/icon-and-text";
 import LogoSvg from "components/particles/logo-svg/logo-svg";
 import Spacing from "components/particles/spacing-particles";
@@ -14,7 +14,7 @@ export default function DashbordMenu (){
     
     return (
      <>
-      <DivGridItenArea tituloArea="Menu" colorBackground={theme.colors.background_dashboard}  sizeBorder={"0px"}>
+     <DivAreaIten objAreaIten={{areaTitle:"Menu", colorBackground:theme.colors.background_dashboard, sizeBorder:"0px"}}>
 
         <Spacing marginTop={"22px"}/>
         <LogoSvg/>
@@ -47,8 +47,8 @@ export default function DashbordMenu (){
         <DivMenuItenFinal onClick={()=>alert("Sair da conta")}>
             <IconAndText chooseType="ICON + TEXTO" iconName="SvgGoBack" alignComponents="Left" gapBetweenComponents="15px" textWritten="Sair da conta" textSize="16px" iconSize="16px"/>
         </DivMenuItenFinal>
-
-       </DivGridItenArea>
+        
+    </DivAreaIten>
      </>
   
     )
