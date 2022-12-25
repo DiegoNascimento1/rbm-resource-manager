@@ -8,6 +8,10 @@ export const THEME = {
       secondary2: "#909194",
       secondary3: "#262424",
       background_login: "#E1EEF3",
+      background_dashboard: "#ffffff",
+      background_dashboard2: "#F0F7FD",
+      background_dashboard_botton1: "#C3E4F6",
+      background_information1: "#003971",
     },
   },
   dark: {
@@ -19,6 +23,10 @@ export const THEME = {
       secondary2: "#909194",
       secondary3: "#262424",
       background_login: "#E1EEF3",
+      background_dashboard: "#ffffff",  
+      background_dashboard2: "#F0F7FD", 
+      background_dashboard_botton1: "#C3E4F6", 
+      background_information1: "#003971", 
     },
   },
 };

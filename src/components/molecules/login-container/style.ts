@@ -8,6 +8,7 @@ export const StyleLoginContainer = styled.div`
   max-width: 475px; */
   padding: 42px 32px 42px 32px;
   align-items: center;
+  position: relative;
 
 
   /* p:nth-child(2) {

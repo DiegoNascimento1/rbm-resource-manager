@@ -1,16 +1,16 @@
-import React, { ReactNode } from "react";
-import { useTheme } from "styled-components";
+import  { ReactNode } from "react";
 import * as Styled from "./typography-style";
 
-type TypographyTypes = {
+export type TypographyTypes = {
 	size?: string;
 	fontWeight?: string;
 	color?: string;
-	tag: "h1" | "h2" | "p";
+	tag: "h1" | "h2" | "p" | "label";
 	children: ReactNode;
 	decoration?: "underline" | "line-through" | "none";
 	margin?:string;
 	cursorHover?: string;
+	heightLine?: string;
 };
 
 export default function Typography(props: TypographyTypes) {
@@ -23,6 +23,7 @@ export default function Typography(props: TypographyTypes) {
 			decoration={props.decoration}
 			margin={props.margin}
 			cursorHover={props.cursorHover}
+			heightLine={props.heightLine}
 		>
 			{props.children}
 		</Styled.Text>

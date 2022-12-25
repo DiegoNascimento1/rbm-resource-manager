@@ -2,13 +2,19 @@ import { useEffect, useState } from "react";
 import { StyledDivContainer, StyledDivSubContainer } from "./style";
 import useTheme from "hooks/useTheme";
 import Typography from "components/particles/typography-particles";
-import SvgErrorOrange from "../../../assets/svgs/erro-orange.svg"
+import SvgErrorOrange from "../../../assets/svgs/erro-orange.svg";
 import SvgSucess from "../../../assets/svgs/sucess.svg";
 import SvgInfo from "../../../assets/svgs/info.svg";
+import SvgCaixa from "../../../assets/svgs/caixa.svg";
+import SvgConfig from "../../../assets/svgs/config.svg";
+import SvgFiguras from "../../../assets/svgs/figuras.svg";
+import SvgUsuarioAdd from "../../../assets/svgs/usuario-add.svg";
+import SvgGoBack from "../../../assets/svgs/goBack.svg";
+import SvgIncioDeselecionado from "../../../assets/svgs/InicioDes.svg";
 
 type AlignTextType = "Left"| "Center";
 
-type IconNameType = "SvgErrorOrange" | "SvgSucess" | "SvgInfo" ;
+type IconNameType = "SvgErrorOrange" | "SvgSucess" | "SvgInfo" | "SvgCaixa" | "SvgConfig" | "SvgInicio" | "SvgFiguras" | "SvgUsuarioAdd" | "SvgGoBack" | "SvgIncioDeselecionado";
 
 type PropsIconAndTextType = { chooseType: "CONFIRM + ICON + TEXTO"; 
                     iconName?: IconNameType;
@@ -127,6 +133,24 @@ export default function IconAndText(props: PropsIconAndTextType) {
 
         case "SvgInfo":
             return SvgInfo
+        
+        case "SvgCaixa":
+            return SvgCaixa
+
+        case "SvgConfig":
+            return SvgConfig
+        
+        case "SvgFiguras":
+            return SvgFiguras
+
+        case "SvgUsuarioAdd":
+            return SvgUsuarioAdd
+
+        case "SvgGoBack":
+            return SvgGoBack
+
+        case "SvgIncioDeselecionado":
+            return SvgIncioDeselecionado
 
         default:
             return SvgDefault
